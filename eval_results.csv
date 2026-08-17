@@ -1,102 +1,100 @@
-scenario_id,true_incident_type,true_channel,num_tool_calls,tools_used,diagnosis,type_correct,channel_correct,fully_correct
-scenario_01,traffic_collapse,referral,8,"['segment_comparison_tool', 'segment_comparison_tool', 'detect_changepoints', 'segment_comparison_tool', 'detect_changepoints', 'check_event_alignment', 'detect_changepoints', 'check_event_alignment']","I now have all the evidence needed for a definitive diagnosis. Here is my full findings report:
+scenario_id,true_incident_type,true_channel,num_tool_calls,tools_used,tool_call_details,diagnosis,type_correct,channel_correct,fully_correct
+scenario_01,traffic_collapse,referral,6,"['segment_comparison_tool', 'detect_changepoints', 'segment_comparison_tool', 'detect_changepoints', 'check_event_alignment', 'check_event_alignment']","[{""tool"": ""segment_comparison_tool"", ""input"": {""split_date"": ""2024-02-01""}, ""output"": {""split_date"": ""2024-02-01"", ""signups_by_channel"": [{""channel"": ""organic"", ""before_mean"": null, ""after_mean"": null, ""pct_change"": null, ""p_value"": null, ""significant"": false, ""warning"": ""Insufficient data for a reliable comparison: 0 days before, 90 days after split_date. Need at least 5 days on each side \u2014 try a split_date closer to the middle of the data range.""}, {""channel"": ""paid"", ""before_mean"": null, ""after_mean"": null, ""pct_change"": null, ""p_value"": null, ""significant"": false, ""warning"": ""Insufficient data for a reliable comparison: 0 days before, 90 days after split_date. Need at least 5 days on each side \u2014 try a split_date closer to the middle of the data range.""}, {""channel"": ""referral"", ""before_mean"": null, ""after_mean"": null, ""pct_change"": null, ""p_value"": null, ""significant"": false, ""warning"": ""Insufficient data for a reliable comparison: 0 days before, 90 days after split_date. Need at least 5 days on each side \u2014 try a split_date closer to the middle of the data range.""}], ""conversion_by_channel"": [{""channel"": ""organic"", ""before_mean"": null, ""after_mean"": null, ""pct_change"": null, ""p_value"": null, ""significant"": false, ""warning"": ""Insufficient data for a reliable comparison: 0 days before, 90 days after split_date. Need at least 5 days on each side \u2014 try a split_date closer to the middle of the data range.""}, {""channel"": ""paid"", ""before_mean"": null, ""after_mean"": null, ""pct_change"": null, ""p_value"": null, ""significant"": false, ""warning"": ""Insufficient data for a reliable comparison: 0 days before, 90 days after split_date. Need at least 5 days on each side \u2014 try a split_date closer to the middle of the data range.""}, {""channel"": ""referral"", ""before_mean"": null, ""after_mean"": null, ""pct_change"": null, ""p_value"": null, ""significant"": false, ""warning"": ""Insufficient data for a reliable comparison: 0 days before, 90 days after split_date. Need at least 5 days on each side \u2014 try a split_date closer to the middle of the data range.""}], ""channels_with_signups_drop"": [], ""channels_with_conversion_drop"": [], ""interpretation"": ""No channel shows a significant drop in signups or conversion rate.""}}, {""tool"": ""detect_changepoints"", ""input"": {""metric_col"": ""signups""}, ""output"": {""channel_queried"": ""all channels combined"", ""metric"": ""signups"", ""detected_changepoint"": ""2026-02-14"", ""t_stat"": 2.939, ""p_value"": 0.0042, ""significant"": ""True""}}, {""tool"": ""segment_comparison_tool"", ""input"": {""split_date"": ""2026-02-14""}, ""output"": {""split_date"": ""2026-02-14"", ""signups_by_channel"": [{""channel"": ""referral"", ""before_mean"": 76.0, ""after_mean"": 22.0, ""pct_change"": -71.0, ""p_value"": 0.0, ""significant"": true, ""warning"": null}, {""channel"": ""organic"", ""before_mean"": 160.7, ""after_mean"": 156.7, ""pct_change"": -2.5, ""p_value"": 0.6866, ""significant"": false, ""warning"": null}, {""channel"": ""paid"", ""before_mean"": 133.2, ""after_mean"": 135.3, ""pct_change"": 1.6, ""p_value"": 0.7938, ""significant"": false, ""warning"": null}], ""conversion_by_channel"": [{""channel"": ""organic"", ""before_mean"": 0.0, ""after_mean"": 0.0, ""pct_change"": -2.8, ""p_value"": 0.0831, ""significant"": false, ""warning"": null}, {""channel"": ""referral"", ""before_mean"": 0.1, ""after_mean"": 0.1, ""pct_change"": -1.2, ""p_value"": 0.4973, ""significant"": false, ""warning"": null}, {""channel"": ""paid"", ""before_mean"": 0.1, ""after_mean"": 0.1, ""pct_change"": 3.8, ""p_value"": 0.0168, ""significant"": true, ""warning"": null}], ""channels_with_signups_drop"": [""referral""], ""channels_with_conversion_drop"": [], ""interpretation"": ""Signups dropped in ['referral'] with no conversion-rate change \u2014 likely a traffic-volume issue isolated to ['referral'].""}}, {""tool"": ""detect_changepoints"", ""input"": {""metric_col"": ""conversion_rate""}, ""output"": {""channel_queried"": ""all channels combined"", ""metric"": ""conversion_rate"", ""detected_changepoint"": ""2026-03-05"", ""t_stat"": -3.029, ""p_value"": 0.0035, ""significant"": ""True""}}, {""tool"": ""check_event_alignment"", ""input"": {""candidate_date"": ""2026-02-14"", ""channel"": ""referral""}, ""output"": {""candidate_date"": ""2026-02-14"", ""channel_queried"": ""referral"", ""matching_events"": [], ""interpretation"": ""No known event found within 2 days of 2026-02-14.""}}, {""tool"": ""check_event_alignment"", ""input"": {""candidate_date"": ""2026-02-14"", ""channel"": null}, ""output"": {""candidate_date"": ""2026-02-14"", ""channel_queried"": null, ""matching_events"": [{""date"": ""2026-02-14"", ""event_type"": ""spend_change"", ""channel"": ""paid"", ""description"": ""Q1 budget freeze \u2014 paid spend cut ~50%"", ""days_from_candidate"": 0}], ""interpretation"": ""Q1 budget freeze \u2014 paid spend cut ~50% on 2026-02-14 (+0 days from candidate)""}}]","Interesting! A Q1 budget freeze cut paid spend by ~50% on Feb 14 — but the data shows paid signups are unaffected. However, this budget freeze could have had a **secondary effect on the referral program** (e.g., reduced paid traffic reducing referral seeding). I have enough evidence to deliver a clear diagnosis.
 
 ---
 
-## 🔍 Root Cause Diagnosis: February Signup Drop
+## 🔍 Investigation Summary & Final Diagnosis
 
-### 📌 Most Likely Root Cause
-**A severe, unexplained collapse in referral channel traffic starting February 14, 2026.**
-
----
-
-### 🧩 Evidence Summary
-
-| Finding | Detail |
-|---|---|
-| **Changepoint detected** | February 14, 2026 — statistically significant (p = 0.0042, t = 2.94) |
-| **Channel isolation** | Only **referral** signups dropped significantly (**-71%**, before mean: 76/day → after mean: 22/day, p ≈ 0.0) |
-| **Organic & Paid unaffected** | Organic: -2.5% (p = 0.69, not significant). Paid: +1.6% (p = 0.79, not significant) |
-| **Conversion rate stable** | No significant conversion rate drop in referral (p = 0.50), ruling out a funnel/UX issue |
-| **Referral changepoint confirmed** | The referral-scoped changepoint detector returned the same date: Feb 14 (t = **16.8**, p ≈ 0.0) — an extraordinarily strong signal |
-| **No known referral event** | Event alignment found **no business event** logged for referral on or near Feb 14 |
-| **Unrelated paid event noted** | A Q1 budget freeze cut paid spend ~50% on Feb 14, but paid signups were *unaffected* — suggesting the budget cut did not translate into a paid signup drop (possibly offset by efficiency gains) |
+### Root Cause: Referral Channel Traffic Collapse — Likely Triggered by the Q1 Paid Budget Freeze
 
 ---
 
-### 🩺 Diagnosis
+### 📊 Evidence Chain
 
-This is a **traffic-volume problem isolated to the referral channel**, not a conversion/funnel issue. The drop is:
-- **Abrupt** (single changepoint, not a gradual decline)
-- **Severe** (-71% in daily referral signups)
-- **Statistically certain** (t-stat of 16.8 is exceptionally high)
-- **Unexplained** by any logged internal business event
-
-**Confidence Level: 🟡 Medium-High**
-- High confidence that referral traffic is the cause and Feb 14 is the start date.
-- Medium confidence on the *root cause of the referral drop itself* — because no known event explains it. This warrants further manual investigation.
-
----
-
-### ⚠️ Recommended Next Steps
-
-1. **Inspect referral partners/sources** — Did a major referring partner (affiliate, integration, partner site) go offline, change their link, or stop sending traffic around Feb 14?
-2. **Check for referral program changes** — Was the referral incentive structure, link validity, or referral tracking code modified around this date?
-3. **Audit UTM/attribution data** — Could referral traffic have been mis-attributed to another channel post-Feb 14, making it *appear* as a drop?
-4. **Investigate the paid budget freeze separately** — While paid signups held steady, monitor whether the -50% spend cut causes delayed downstream effects.",True,True,True
-scenario_02,conversion_bug,paid,8,"['segment_comparison_tool', 'detect_changepoints', 'detect_changepoints', 'segment_comparison_tool', 'detect_changepoints', 'detect_changepoints', 'detect_changepoints', 'check_event_alignment']","The evidence is conclusive. Here is the full diagnosis:
-
----
-
-## 🔍 Root Cause Diagnosis
-
-### Most Likely Root Cause: Payment Processor Migration (Deployed Feb 8, 2026) Breaking the Paid Signup Funnel
-
----
-
-### 📋 Summary of Evidence
-
-| Finding | Detail |
-|---|---|
-| **Affected channel** | **Paid only** — Organic (+1.8%) and Referral (+8.1%) are completely unaffected |
-| **Signup drop** | Paid signups fell **−60.4%** (from 135.4/day → 53.7/day) |
-| **Conversion rate drop** | Paid conversion rate fell **−60.5%** — almost identical magnitude |
-| **Changepoint date** | Statistically detected at **Feb 10, 2026** (t=12.29, p≈0) |
-| **Known business event** | A **Payment Processor Migration** was deployed on **Feb 8, 2026** — just 2 days before the detected changepoint |
+| Step | Tool | Finding |
+|------|------|---------|
+| **Changepoint detection** | `detect_changepoints` (signups) | Statistically significant break on **Feb 14, 2026** (p=0.0042, t=2.94) |
+| **Channel segmentation** | `segment_comparison_tool` (split: Feb 14) | **Referral signups dropped −71%** (highly significant, p≈0); organic (−2.5%) and paid (+1.6%) are flat |
+| **Traffic vs. funnel** | `segment_comparison_tool` (conversion rates) | Conversion rates are **stable across all channels** — this is a **traffic volume problem, not a funnel/UX problem** |
+| **Event alignment** | `check_event_alignment` (Feb 14, global) | A **Q1 budget freeze cut paid spend by ~50%** on the exact same date |
 
 ---
 
 ### 🧠 Interpretation
 
-The near-identical drop in both **signups and conversion rate** (both ~60%) in the paid channel, while traffic (signups attempted) may have stayed stable, points strongly to a **funnel breakage** — not a traffic problem. Specifically:
+The signup drop is **entirely explained by a collapse in referral channel traffic** starting February 14. Crucially:
+- **Organic and paid channels are unaffected** in signup volume
+- **Conversion rates are stable**, ruling out a broken signup flow, pricing change, or UX regression
+- The **Q1 paid budget freeze** coincides precisely with the changepoint. While the paid channel itself didn't drop (possibly due to efficiency gains), the referral program likely depends on paid traffic as a seeding mechanism — fewer paid users entering the funnel means fewer users to refer others
 
-- The payment processor migration on **Feb 8** likely introduced a bug or incompatibility in the paid signup or checkout flow.
-- Users arriving via paid ads were encountering a broken payment step, causing them to abandon the funnel at high rates.
-- Organic and referral users were unaffected because they likely follow a different onboarding path or aren't subject to the same payment step.
+---
+
+### ⚠️ Confidence Level: **Medium-High**
+
+- **High confidence** that the referral channel is the source of the drop and that it's a traffic problem
+- **Medium confidence** on the paid budget freeze as the *cause* of the referral collapse — the correlation is exact (same date), but no direct referral-specific event was logged. It's possible a **referral program partner outage, link breakage, or partner campaign ending** is the true trigger and simply went unlogged
+
+---
+
+### ✅ Recommended Next Steps
+
+1. **Audit referral sources on Feb 14**: Which specific referral partners or campaigns collapsed? Was a major referral link broken or deactivated?
+2. **Check paid-to-referral funnel dependency**: Confirm whether paid users are seeding the referral program — if so, the budget cut has a compound effect
+3. **Log the referral event**: If a partner program changed on this date, add it to the event registry for future investigations
+4. **Consider referral program intervention**: With referral traffic down 71%, targeted outreach to top referrers or a temporary referral incentive boost may help recovery",True,True,True
+scenario_02,conversion_bug,paid,11,"['segment_comparison_tool', 'segment_comparison_tool', 'detect_changepoints', 'detect_changepoints', 'segment_comparison_tool', 'detect_changepoints', 'detect_changepoints', 'detect_changepoints', 'check_event_alignment', 'check_event_alignment', 'check_event_alignment']","[{""tool"": ""segment_comparison_tool"", ""input"": {""split_date"": ""2025-02-01""}, ""output"": {""split_date"": ""2025-02-01"", ""signups_by_channel"": [{""channel"": ""organic"", ""before_mean"": null, ""after_mean"": null, ""pct_change"": null, ""p_value"": null, ""significant"": false, ""warning"": ""Insufficient data for a reliable comparison: 0 days before, 90 days after split_date. Need at least 5 days on each side \u2014 try a split_date closer to the middle of the data range.""}, {""channel"": ""paid"", ""before_mean"": null, ""after_mean"": null, ""pct_change"": null, ""p_value"": null, ""significant"": false, ""warning"": ""Insufficient data for a reliable comparison: 0 days before, 90 days after split_date. Need at least 5 days on each side \u2014 try a split_date closer to the middle of the data range.""}, {""channel"": ""referral"", ""before_mean"": null, ""after_mean"": null, ""pct_change"": null, ""p_value"": null, ""significant"": false, ""warning"": ""Insufficient data for a reliable comparison: 0 days before, 90 days after split_date. Need at least 5 days on each side \u2014 try a split_date closer to the middle of the data range.""}], ""conversion_by_channel"": [{""channel"": ""organic"", ""before_mean"": null, ""after_mean"": null, ""pct_change"": null, ""p_value"": null, ""significant"": false, ""warning"": ""Insufficient data for a reliable comparison: 0 days before, 90 days after split_date. Need at least 5 days on each side \u2014 try a split_date closer to the middle of the data range.""}, {""channel"": ""paid"", ""before_mean"": null, ""after_mean"": null, ""pct_change"": null, ""p_value"": null, ""significant"": false, ""warning"": ""Insufficient data for a reliable comparison: 0 days before, 90 days after split_date. Need at least 5 days on each side \u2014 try a split_date closer to the middle of the data range.""}, {""channel"": ""referral"", ""before_mean"": null, ""after_mean"": null, ""pct_change"": null, ""p_value"": null, ""significant"": false, ""warning"": ""Insufficient data for a reliable comparison: 0 days before, 90 days after split_date. Need at least 5 days on each side \u2014 try a split_date closer to the middle of the data range.""}], ""channels_with_signups_drop"": [], ""channels_with_conversion_drop"": [], ""interpretation"": ""No channel shows a significant drop in signups or conversion rate.""}}, {""tool"": ""segment_comparison_tool"", ""input"": {""split_date"": ""2025-02-15""}, ""output"": {""split_date"": ""2025-02-15"", ""signups_by_channel"": [{""channel"": ""organic"", ""before_mean"": null, ""after_mean"": null, ""pct_change"": null, ""p_value"": null, ""significant"": false, ""warning"": ""Insufficient data for a reliable comparison: 0 days before, 90 days after split_date. Need at least 5 days on each side \u2014 try a split_date closer to the middle of the data range.""}, {""channel"": ""paid"", ""before_mean"": null, ""after_mean"": null, ""pct_change"": null, ""p_value"": null, ""significant"": false, ""warning"": ""Insufficient data for a reliable comparison: 0 days before, 90 days after split_date. Need at least 5 days on each side \u2014 try a split_date closer to the middle of the data range.""}, {""channel"": ""referral"", ""before_mean"": null, ""after_mean"": null, ""pct_change"": null, ""p_value"": null, ""significant"": false, ""warning"": ""Insufficient data for a reliable comparison: 0 days before, 90 days after split_date. Need at least 5 days on each side \u2014 try a split_date closer to the middle of the data range.""}], ""conversion_by_channel"": [{""channel"": ""organic"", ""before_mean"": null, ""after_mean"": null, ""pct_change"": null, ""p_value"": null, ""significant"": false, ""warning"": ""Insufficient data for a reliable comparison: 0 days before, 90 days after split_date. Need at least 5 days on each side \u2014 try a split_date closer to the middle of the data range.""}, {""channel"": ""paid"", ""before_mean"": null, ""after_mean"": null, ""pct_change"": null, ""p_value"": null, ""significant"": false, ""warning"": ""Insufficient data for a reliable comparison: 0 days before, 90 days after split_date. Need at least 5 days on each side \u2014 try a split_date closer to the middle of the data range.""}, {""channel"": ""referral"", ""before_mean"": null, ""after_mean"": null, ""pct_change"": null, ""p_value"": null, ""significant"": false, ""warning"": ""Insufficient data for a reliable comparison: 0 days before, 90 days after split_date. Need at least 5 days on each side \u2014 try a split_date closer to the middle of the data range.""}], ""channels_with_signups_drop"": [], ""channels_with_conversion_drop"": [], ""interpretation"": ""No channel shows a significant drop in signups or conversion rate.""}}, {""tool"": ""detect_changepoints"", ""input"": {""metric_col"": ""signups"", ""channel"": null}, ""output"": {""channel_queried"": ""all channels combined"", ""metric"": ""signups"", ""detected_changepoint"": ""2026-02-13"", ""t_stat"": 4.172, ""p_value"": 0.0001, ""significant"": ""True""}}, {""tool"": ""detect_changepoints"", ""input"": {""metric_col"": ""conversion_rate"", ""channel"": null}, ""output"": {""channel_queried"": ""all channels combined"", ""metric"": ""conversion_rate"", ""detected_changepoint"": ""2026-02-10"", ""t_stat"": 21.166, ""p_value"": 0.0, ""significant"": ""True""}}, {""tool"": ""segment_comparison_tool"", ""input"": {""split_date"": ""2026-02-10""}, ""output"": {""split_date"": ""2026-02-10"", ""signups_by_channel"": [{""channel"": ""paid"", ""before_mean"": 135.4, ""after_mean"": 53.7, ""pct_change"": -60.4, ""p_value"": 0.0, ""significant"": true, ""warning"": null}, {""channel"": ""organic"", ""before_mean"": 159.8, ""after_mean"": 162.7, ""pct_change"": 1.8, ""p_value"": 0.762, ""significant"": false, ""warning"": null}, {""channel"": ""referral"", ""before_mean"": 67.6, ""after_mean"": 73.0, ""pct_change"": 8.1, ""p_value"": 0.188, ""significant"": false, ""warning"": null}], ""conversion_by_channel"": [{""channel"": ""paid"", ""before_mean"": 0.1, ""after_mean"": 0.0, ""pct_change"": -60.5, ""p_value"": 0.0, ""significant"": true, ""warning"": null}, {""channel"": ""organic"", ""before_mean"": 0.0, ""after_mean"": 0.0, ""pct_change"": -0.9, ""p_value"": 0.5848, ""significant"": false, ""warning"": null}, {""channel"": ""referral"", ""before_mean"": 0.1, ""after_mean"": 0.1, ""pct_change"": 2.4, ""p_value"": 0.1248, ""significant"": false, ""warning"": null}], ""channels_with_signups_drop"": [""paid""], ""channels_with_conversion_drop"": [""paid""], ""interpretation"": ""Mixed signal: signups dropped in ['paid'], conversion dropped in ['paid'] \u2014 needs further investigation.""}}, {""tool"": ""detect_changepoints"", ""input"": {""metric_col"": ""signups"", ""channel"": ""organic""}, ""output"": {""channel_queried"": ""organic"", ""metric"": ""signups"", ""detected_changepoint"": ""2026-01-17"", ""t_stat"": 0.893, ""p_value"": 0.3811, ""significant"": ""False""}}, {""tool"": ""detect_changepoints"", ""input"": {""metric_col"": ""signups"", ""channel"": ""paid""}, ""output"": {""channel_queried"": ""paid"", ""metric"": ""signups"", ""detected_changepoint"": ""2026-02-10"", ""t_stat"": 12.293, ""p_value"": 0.0, ""significant"": ""True""}}, {""tool"": ""detect_changepoints"", ""input"": {""metric_col"": ""signups"", ""channel"": ""referral""}, ""output"": {""channel_queried"": ""referral"", ""metric"": ""signups"", ""detected_changepoint"": ""2026-02-09"", ""t_stat"": -1.345, ""p_value"": 0.1823, ""significant"": ""False""}}, {""tool"": ""check_event_alignment"", ""input"": {""candidate_date"": ""2026-02-10"", ""channel"": null}, ""output"": {""candidate_date"": ""2026-02-10"", ""channel_queried"": null, ""matching_events"": [{""date"": ""2026-02-08"", ""event_type"": ""deploy"", ""channel"": null, ""description"": ""Payment processor migration deployed"", ""days_from_candidate"": -2}], ""interpretation"": ""Payment processor migration deployed on 2026-02-08 (-2 days from candidate)""}}, {""tool"": ""check_event_alignment"", ""input"": {""candidate_date"": ""2026-02-13"", ""channel"": null}, ""output"": {""candidate_date"": ""2026-02-13"", ""channel_queried"": null, ""matching_events"": [{""date"": ""2026-02-14"", ""event_type"": ""spend_change"", ""channel"": ""paid"", ""description"": ""Q1 budget freeze \u2014 paid spend cut ~50%"", ""days_from_candidate"": 1}], ""interpretation"": ""Q1 budget freeze \u2014 paid spend cut ~50% on 2026-02-14 (+1 days from candidate)""}}, {""tool"": ""check_event_alignment"", ""input"": {""candidate_date"": ""2026-02-10"", ""channel"": ""paid""}, ""output"": {""candidate_date"": ""2026-02-10"", ""channel_queried"": ""paid"", ""matching_events"": [{""date"": ""2026-02-08"", ""event_type"": ""deploy"", ""channel"": null, ""description"": ""Payment processor migration deployed"", ""days_from_candidate"": -2}], ""interpretation"": ""Payment processor migration deployed on 2026-02-08 (-2 days from candidate)""}}]","I now have enough evidence for a definitive diagnosis. Here is the full report:
+
+---
+
+## 🔍 Root Cause Diagnosis: February Signup Drop
+
+### Summary
+The signup drop is **real, statistically significant, and isolated entirely to the paid channel**. It is most likely explained by **two compounding events** that struck within days of each other in early-to-mid February 2026.
+
+---
+
+### 📊 Evidence Breakdown
+
+| Finding | Detail |
+|---|---|
+| **Channels affected** | **Paid only** — Organic (+1.8%, p=0.76) and Referral (+8.1%, p=0.19) showed *no* significant change |
+| **Paid signup drop** | **−60.4%** (from a mean of 135.4/day → 53.7/day), p≈0.0 |
+| **Paid conversion rate drop** | **−60.5%** simultaneously, p≈0.0 |
+| **Changepoint — paid signups** | Pinpointed to **Feb 10, 2026** (t-stat=12.29, p≈0.0) — extremely strong signal |
+| **Changepoint — overall conversion rate** | **Feb 10, 2026** (t-stat=21.17, p≈0.0) — strongest signal in the dataset |
+| **Business Event 1** | 🚨 **Payment processor migration deployed on Feb 8** (2 days before the changepoint) |
+| **Business Event 2** | 💸 **Q1 budget freeze — paid spend cut ~50% on Feb 14** (shortly after the changepoint) |
+
+---
+
+### 🧠 Most Likely Root Cause
+
+**Primary cause: The payment processor migration (Feb 8)** introduced a conversion-breaking issue in the paid funnel. This explains why *both* signups *and* conversion rate dropped simultaneously starting Feb 10 — traffic may have still arrived from paid channels, but users were failing to complete signup (likely at a payment or checkout step). This is a **funnel problem**, not just a traffic problem.
+
+**Secondary / compounding cause: The paid budget freeze (Feb 14)** then cut paid ad spend by ~50%, further suppressing paid traffic and amplifying the signup drop in the latter half of February.
 
 ---
 
 ### ✅ Confidence Level: **HIGH**
 
-Three independent lines of evidence converge on the same conclusion:
-1. **Channel isolation** — the anomaly is 100% concentrated in paid.
-2. **Dual metric drop** — both signups and conversion rate fell equally, hallmark of a funnel break.
-3. **Event alignment** — a payment system deployment occurred just 2 days before the changepoint.
+- The anomaly is **perfectly channel-scoped** (paid only, zero bleed into organic/referral)
+- The changepoint is **extremely statistically significant** (p≈0.0, t=12.3)
+- **Two known business events** align within 2–4 days of the changepoint, both with direct mechanistic explanations
+- The simultaneous drop in both signups AND conversion rate confirms this is a **funnel-level failure**, not just a spend/traffic reduction
 
 ---
 
 ### 🔧 Recommended Actions
-1. **Immediately audit** the paid signup/checkout flow for regressions introduced by the Feb 8 payment processor migration.
-2. **Roll back or hotfix** the payment integration if the bug is confirmed.
-3. **Compare** conversion funnels between paid vs. organic/referral users to pinpoint the exact step where drop-off occurs.
-4. **Monitor** paid signups and conversion rate daily after the fix to confirm recovery.",True,True,True
-scenario_03,sitewide_bug,,4,"['segment_comparison_tool', 'detect_changepoints', 'segment_comparison_tool', 'check_event_alignment']","I now have a comprehensive and clear picture. Let me compile the final diagnosis.
+1. **Immediately audit the payment processor migration** — check drop-off rates at each step of the paid signup funnel from Feb 8 onward. Look for error logs, failed transactions, or broken form states.
+2. **Evaluate the Q1 budget freeze** — determine whether the spend cut is intentional and whether the conversion issue (if fixed) would justify reinstating budget.
+3. **Monitor organic & referral** — these channels are healthy and could be leaned into while the paid funnel is repaired.",True,True,True
+scenario_03,sitewide_bug,,5,"['segment_comparison_tool', 'detect_changepoints', 'segment_comparison_tool', 'detect_changepoints', 'check_event_alignment']","[{""tool"": ""segment_comparison_tool"", ""input"": {""split_date"": ""2024-02-01""}, ""output"": {""split_date"": ""2024-02-01"", ""signups_by_channel"": [{""channel"": ""organic"", ""before_mean"": null, ""after_mean"": null, ""pct_change"": null, ""p_value"": null, ""significant"": false, ""warning"": ""Insufficient data for a reliable comparison: 0 days before, 90 days after split_date. Need at least 5 days on each side \u2014 try a split_date closer to the middle of the data range.""}, {""channel"": ""paid"", ""before_mean"": null, ""after_mean"": null, ""pct_change"": null, ""p_value"": null, ""significant"": false, ""warning"": ""Insufficient data for a reliable comparison: 0 days before, 90 days after split_date. Need at least 5 days on each side \u2014 try a split_date closer to the middle of the data range.""}, {""channel"": ""referral"", ""before_mean"": null, ""after_mean"": null, ""pct_change"": null, ""p_value"": null, ""significant"": false, ""warning"": ""Insufficient data for a reliable comparison: 0 days before, 90 days after split_date. Need at least 5 days on each side \u2014 try a split_date closer to the middle of the data range.""}], ""conversion_by_channel"": [{""channel"": ""organic"", ""before_mean"": null, ""after_mean"": null, ""pct_change"": null, ""p_value"": null, ""significant"": false, ""warning"": ""Insufficient data for a reliable comparison: 0 days before, 90 days after split_date. Need at least 5 days on each side \u2014 try a split_date closer to the middle of the data range.""}, {""channel"": ""paid"", ""before_mean"": null, ""after_mean"": null, ""pct_change"": null, ""p_value"": null, ""significant"": false, ""warning"": ""Insufficient data for a reliable comparison: 0 days before, 90 days after split_date. Need at least 5 days on each side \u2014 try a split_date closer to the middle of the data range.""}, {""channel"": ""referral"", ""before_mean"": null, ""after_mean"": null, ""pct_change"": null, ""p_value"": null, ""significant"": false, ""warning"": ""Insufficient data for a reliable comparison: 0 days before, 90 days after split_date. Need at least 5 days on each side \u2014 try a split_date closer to the middle of the data range.""}], ""channels_with_signups_drop"": [], ""channels_with_conversion_drop"": [], ""interpretation"": ""No channel shows a significant drop in signups or conversion rate.""}}, {""tool"": ""detect_changepoints"", ""input"": {""metric_col"": ""signups""}, ""output"": {""channel_queried"": ""all channels combined"", ""metric"": ""signups"", ""detected_changepoint"": ""2026-02-20"", ""t_stat"": 7.862, ""p_value"": 0.0, ""significant"": ""True""}}, {""tool"": ""segment_comparison_tool"", ""input"": {""split_date"": ""2026-02-20""}, ""output"": {""split_date"": ""2026-02-20"", ""signups_by_channel"": [{""channel"": ""paid"", ""before_mean"": 138.5, ""after_mean"": 87.6, ""pct_change"": -36.8, ""p_value"": 0.0, ""significant"": true, ""warning"": null}, {""channel"": ""organic"", ""before_mean"": 165.5, ""after_mean"": 107.9, ""pct_change"": -34.8, ""p_value"": 0.0, ""significant"": true, ""warning"": null}, {""channel"": ""referral"", ""before_mean"": 71.9, ""after_mean"": 48.8, ""pct_change"": -32.2, ""p_value"": 0.0, ""significant"": true, ""warning"": null}], ""conversion_by_channel"": [{""channel"": ""paid"", ""before_mean"": 0.1, ""after_mean"": 0.0, ""pct_change"": -35.6, ""p_value"": 0.0, ""significant"": true, ""warning"": null}, {""channel"": ""referral"", ""before_mean"": 0.1, ""after_mean"": 0.1, ""pct_change"": -34.2, ""p_value"": 0.0, ""significant"": true, ""warning"": null}, {""channel"": ""organic"", ""before_mean"": 0.0, ""after_mean"": 0.0, ""pct_change"": -33.2, ""p_value"": 0.0, ""significant"": true, ""warning"": null}], ""channels_with_signups_drop"": [""paid"", ""organic"", ""referral""], ""channels_with_conversion_drop"": [""paid"", ""referral"", ""organic""], ""interpretation"": ""Conversion rate dropped across ALL channels \u2014 likely a sitewide funnel/product issue, not a traffic issue.""}}, {""tool"": ""detect_changepoints"", ""input"": {""metric_col"": ""conversion_rate""}, ""output"": {""channel_queried"": ""all channels combined"", ""metric"": ""conversion_rate"", ""detected_changepoint"": ""2026-02-20"", ""t_stat"": 42.18, ""p_value"": 0.0, ""significant"": ""True""}}, {""tool"": ""check_event_alignment"", ""input"": {""candidate_date"": ""2026-02-20"", ""channel"": null}, ""output"": {""candidate_date"": ""2026-02-20"", ""channel_queried"": null, ""matching_events"": [{""date"": ""2026-02-18"", ""event_type"": ""spend_change"", ""channel"": ""paid"", ""description"": ""Marketing cut paid ad spend ~80%"", ""days_from_candidate"": -2}, {""date"": ""2026-02-20"", ""event_type"": ""deploy"", ""channel"": null, ""description"": ""Signup flow refactor deployed"", ""days_from_candidate"": 0}], ""interpretation"": ""Marketing cut paid ad spend ~80% on 2026-02-18 (-2 days from candidate); Signup flow refactor deployed on 2026-02-20 (+0 days from candidate)""}}]","I now have a clear and complete picture. Let me deliver the final diagnosis.
 
 ---
 
-## 🔍 Final Diagnosis
+## 🔍 Root Cause Diagnosis
 
-### Root Cause: **Signup Flow Refactor Deployed on 2026-02-20 (Primary) + Paid Ad Spend Cut on 2026-02-18 (Contributing)**
+### Most Likely Root Cause: **Signup Flow Refactor Deployed on 2026-02-20**
 
 ---
 
@@ -104,46 +102,42 @@ scenario_03,sitewide_bug,,4,"['segment_comparison_tool', 'detect_changepoints', 
 
 | Finding | Detail |
 |---|---|
-| **Changepoint detected** | 2026-02-20, highly significant (t-stat = 7.86, p ≈ 0) |
-| **Channels affected** | ALL three: Paid (−36.8%), Organic (−34.8%), Referral (−32.2%) |
-| **Conversion rate affected** | ALL three channels dropped ~33–36% |
-| **Traffic vs. Funnel** | **Funnel issue** — both signups AND conversion rates dropped across every channel |
-| **Known event #1** | Signup flow refactor deployed on **Feb 20** (exact match) |
-| **Known event #2** | Paid ad spend cut ~80% on **Feb 18** (2 days prior) |
+| **Changepoint — Signups** | Highly significant break detected on **Feb 20** (t=7.86, p≈0) |
+| **Changepoint — Conversion Rate** | Even stronger break on **Feb 20** (t=42.18, p≈0) |
+| **Channels Affected** | **All three** (paid: -36.8%, organic: -34.8%, referral: -32.2%) |
+| **Conversion Rate Drop** | Dropped across **all channels** by ~33–36% |
+| **Known Event on Feb 20** | ✅ **Signup flow refactor deployed** (exact date match) |
+| **Secondary Event on Feb 18** | ⚠️ Paid ad spend cut ~80% (2 days prior) |
 
 ---
 
-### 🧠 Interpretation
+### 🧠 Reasoning
 
-There are **two overlapping events**, but they explain different parts of the anomaly:
+1. **It's a funnel problem, not a traffic problem.** The `segment_comparison_tool` explicitly flagged this as a *""sitewide funnel/product issue""* — conversion rate dropped ~33–35% across **all** channels simultaneously. If it were purely a traffic issue, conversion rates would have remained stable.
 
-1. **Signup flow refactor (Feb 20) → Primary cause of the funnel degradation.** The conversion rate drop is ~33–36% *across all channels simultaneously* — organic and referral have no dependency on ad spend, yet they dropped just as much as paid. This cross-channel uniformity is the hallmark of a **sitewide product/funnel issue**, not a marketing problem. The refactor almost certainly introduced a bug or UX regression in the signup flow.
+2. **The drop is channel-agnostic.** Organic, paid, and referral were all hit nearly equally (~33–37%). This rules out any channel-specific cause (e.g., a paid ad budget cut would only affect the paid channel).
 
-2. **Paid ad spend cut −80% (Feb 18) → Contributing cause of the volume drop in paid channel.** This would reduce raw paid signups independently, but it cannot explain the organic and referral drops, nor the conversion rate collapse across the board.
+3. **The Feb 20 deploy is the smoking gun.** A **signup flow refactor** was deployed on the *exact same date* as both changepoints. A broken or degraded signup UX/flow would explain a simultaneous conversion drop across all channels.
 
----
-
-### ✅ Confidence Level: **High**
-
-The evidence strongly converges:
-- The changepoint date exactly aligns with the deploy.
-- The cross-channel nature of both the signup drop and conversion rate drop rules out a channel-specific traffic explanation.
-- The tool explicitly interprets this as a *""sitewide funnel/product issue.""*
+4. **The paid spend cut (Feb 18) is a secondary, contributing factor.** While cutting paid spend by ~80% would reduce raw signup *volume* from the paid channel, it cannot explain the conversion rate decline across organic and referral channels. It likely compounded the volume drop but is *not* the root cause.
 
 ---
 
-### 🔧 Recommended Actions
+### ✅ Confidence Level: **HIGH**
 
-1. **Immediate:** Audit the Feb 20 signup flow refactor for regressions — check error rates, form submission failures, redirect issues, or broken steps in the funnel.
-2. **Short-term:** Consider rolling back or hotfixing the refactor while investigating.
-3. **Separate investigation:** Evaluate whether the paid ad spend cut of −80% was intentional and whether it should be restored once the funnel is fixed.",True,True,True
-scenario_04,pricing_change,,6,"['segment_comparison_tool', 'detect_changepoints', 'segment_comparison_tool', 'detect_changepoints', 'check_event_alignment', 'check_event_alignment']","The only known event is the paid spend cut on Feb 14 — nothing explains the broader Feb 12 conversion rate drop. But the segment comparison showed conversion dropping across **all** channels simultaneously, which a paid spend cut alone can't explain. I have enough evidence now for a clear diagnosis.
+- Two independent changepoint detections (signups + conversion rate) point to the same exact date.
+- A known deployment event aligns perfectly on that date.
+- The cross-channel, conversion-rate-centric pattern is the hallmark of a product/funnel regression, not a marketing issue.
 
 ---
 
-## 🔍 Final Diagnosis
+### 🛠️ Recommended Actions
+1. **Immediately audit the Feb 20 signup flow refactor** — look for broken steps, redirect errors, form validation bugs, or UX regressions that could be blocking conversions.
+2. **Consider rolling back the deploy** or deploying a hotfix while the investigation is underway.
+3. **Separately evaluate the paid spend cut** — while not the root cause of the conversion drop, the ~80% reduction is dramatically impacting signup volume and should be reviewed against business goals.",True,True,True
+scenario_04,pricing_change,,10,"['segment_comparison_tool', 'segment_comparison_tool', 'detect_changepoints', 'segment_comparison_tool', 'detect_changepoints', 'check_event_alignment', 'check_event_alignment', 'detect_changepoints', 'detect_changepoints', 'detect_changepoints']","[{""tool"": ""segment_comparison_tool"", ""input"": {""split_date"": ""2024-02-01""}, ""output"": {""split_date"": ""2024-02-01"", ""signups_by_channel"": [{""channel"": ""organic"", ""before_mean"": null, ""after_mean"": null, ""pct_change"": null, ""p_value"": null, ""significant"": false, ""warning"": ""Insufficient data for a reliable comparison: 0 days before, 90 days after split_date. Need at least 5 days on each side \u2014 try a split_date closer to the middle of the data range.""}, {""channel"": ""paid"", ""before_mean"": null, ""after_mean"": null, ""pct_change"": null, ""p_value"": null, ""significant"": false, ""warning"": ""Insufficient data for a reliable comparison: 0 days before, 90 days after split_date. Need at least 5 days on each side \u2014 try a split_date closer to the middle of the data range.""}, {""channel"": ""referral"", ""before_mean"": null, ""after_mean"": null, ""pct_change"": null, ""p_value"": null, ""significant"": false, ""warning"": ""Insufficient data for a reliable comparison: 0 days before, 90 days after split_date. Need at least 5 days on each side \u2014 try a split_date closer to the middle of the data range.""}], ""conversion_by_channel"": [{""channel"": ""organic"", ""before_mean"": null, ""after_mean"": null, ""pct_change"": null, ""p_value"": null, ""significant"": false, ""warning"": ""Insufficient data for a reliable comparison: 0 days before, 90 days after split_date. Need at least 5 days on each side \u2014 try a split_date closer to the middle of the data range.""}, {""channel"": ""paid"", ""before_mean"": null, ""after_mean"": null, ""pct_change"": null, ""p_value"": null, ""significant"": false, ""warning"": ""Insufficient data for a reliable comparison: 0 days before, 90 days after split_date. Need at least 5 days on each side \u2014 try a split_date closer to the middle of the data range.""}, {""channel"": ""referral"", ""before_mean"": null, ""after_mean"": null, ""pct_change"": null, ""p_value"": null, ""significant"": false, ""warning"": ""Insufficient data for a reliable comparison: 0 days before, 90 days after split_date. Need at least 5 days on each side \u2014 try a split_date closer to the middle of the data range.""}], ""channels_with_signups_drop"": [], ""channels_with_conversion_drop"": [], ""interpretation"": ""No channel shows a significant drop in signups or conversion rate.""}}, {""tool"": ""segment_comparison_tool"", ""input"": {""split_date"": ""2024-02-15""}, ""output"": {""split_date"": ""2024-02-15"", ""signups_by_channel"": [{""channel"": ""organic"", ""before_mean"": null, ""after_mean"": null, ""pct_change"": null, ""p_value"": null, ""significant"": false, ""warning"": ""Insufficient data for a reliable comparison: 0 days before, 90 days after split_date. Need at least 5 days on each side \u2014 try a split_date closer to the middle of the data range.""}, {""channel"": ""paid"", ""before_mean"": null, ""after_mean"": null, ""pct_change"": null, ""p_value"": null, ""significant"": false, ""warning"": ""Insufficient data for a reliable comparison: 0 days before, 90 days after split_date. Need at least 5 days on each side \u2014 try a split_date closer to the middle of the data range.""}, {""channel"": ""referral"", ""before_mean"": null, ""after_mean"": null, ""pct_change"": null, ""p_value"": null, ""significant"": false, ""warning"": ""Insufficient data for a reliable comparison: 0 days before, 90 days after split_date. Need at least 5 days on each side \u2014 try a split_date closer to the middle of the data range.""}], ""conversion_by_channel"": [{""channel"": ""organic"", ""before_mean"": null, ""after_mean"": null, ""pct_change"": null, ""p_value"": null, ""significant"": false, ""warning"": ""Insufficient data for a reliable comparison: 0 days before, 90 days after split_date. Need at least 5 days on each side \u2014 try a split_date closer to the middle of the data range.""}, {""channel"": ""paid"", ""before_mean"": null, ""after_mean"": null, ""pct_change"": null, ""p_value"": null, ""significant"": false, ""warning"": ""Insufficient data for a reliable comparison: 0 days before, 90 days after split_date. Need at least 5 days on each side \u2014 try a split_date closer to the middle of the data range.""}, {""channel"": ""referral"", ""before_mean"": null, ""after_mean"": null, ""pct_change"": null, ""p_value"": null, ""significant"": false, ""warning"": ""Insufficient data for a reliable comparison: 0 days before, 90 days after split_date. Need at least 5 days on each side \u2014 try a split_date closer to the middle of the data range.""}], ""channels_with_signups_drop"": [], ""channels_with_conversion_drop"": [], ""interpretation"": ""No channel shows a significant drop in signups or conversion rate.""}}, {""tool"": ""detect_changepoints"", ""input"": {""metric_col"": ""signups"", ""channel"": null}, ""output"": {""channel_queried"": ""all channels combined"", ""metric"": ""signups"", ""detected_changepoint"": ""2026-02-14"", ""t_stat"": 4.949, ""p_value"": 0.0, ""significant"": ""True""}}, {""tool"": ""segment_comparison_tool"", ""input"": {""split_date"": ""2026-02-14""}, ""output"": {""split_date"": ""2026-02-14"", ""signups_by_channel"": [{""channel"": ""referral"", ""before_mean"": 74.9, ""after_mean"": 55.9, ""pct_change"": -25.4, ""p_value"": 0.0, ""significant"": true, ""warning"": null}, {""channel"": ""paid"", ""before_mean"": 131.1, ""after_mean"": 98.8, ""pct_change"": -24.6, ""p_value"": 0.0, ""significant"": true, ""warning"": null}, {""channel"": ""organic"", ""before_mean"": 158.7, ""after_mean"": 125.6, ""pct_change"": -20.9, ""p_value"": 0.0001, ""significant"": true, ""warning"": null}], ""conversion_by_channel"": [{""channel"": ""paid"", ""before_mean"": 0.1, ""after_mean"": 0.0, ""pct_change"": -24.4, ""p_value"": 0.0, ""significant"": true, ""warning"": null}, {""channel"": ""referral"", ""before_mean"": 0.1, ""after_mean"": 0.1, ""pct_change"": -23.9, ""p_value"": 0.0, ""significant"": true, ""warning"": null}, {""channel"": ""organic"", ""before_mean"": 0.0, ""after_mean"": 0.0, ""pct_change"": -22.7, ""p_value"": 0.0, ""significant"": true, ""warning"": null}], ""channels_with_signups_drop"": [""referral"", ""paid"", ""organic""], ""channels_with_conversion_drop"": [""paid"", ""referral"", ""organic""], ""interpretation"": ""Conversion rate dropped across ALL channels \u2014 likely a sitewide funnel/product issue, not a traffic issue.""}}, {""tool"": ""detect_changepoints"", ""input"": {""metric_col"": ""conversion_rate"", ""channel"": null}, ""output"": {""channel_queried"": ""all channels combined"", ""metric"": ""conversion_rate"", ""detected_changepoint"": ""2026-02-12"", ""t_stat"": 22.557, ""p_value"": 0.0, ""significant"": ""True""}}, {""tool"": ""check_event_alignment"", ""input"": {""candidate_date"": ""2026-02-12"", ""channel"": null}, ""output"": {""candidate_date"": ""2026-02-12"", ""channel_queried"": null, ""matching_events"": [{""date"": ""2026-02-14"", ""event_type"": ""spend_change"", ""channel"": ""paid"", ""description"": ""Q1 budget freeze \u2014 paid spend cut ~50%"", ""days_from_candidate"": 2}], ""interpretation"": ""Q1 budget freeze \u2014 paid spend cut ~50% on 2026-02-14 (+2 days from candidate)""}}, {""tool"": ""check_event_alignment"", ""input"": {""candidate_date"": ""2026-02-14"", ""channel"": null}, ""output"": {""candidate_date"": ""2026-02-14"", ""channel_queried"": null, ""matching_events"": [{""date"": ""2026-02-14"", ""event_type"": ""spend_change"", ""channel"": ""paid"", ""description"": ""Q1 budget freeze \u2014 paid spend cut ~50%"", ""days_from_candidate"": 0}], ""interpretation"": ""Q1 budget freeze \u2014 paid spend cut ~50% on 2026-02-14 (+0 days from candidate)""}}, {""tool"": ""detect_changepoints"", ""input"": {""metric_col"": ""conversion_rate"", ""channel"": ""organic""}, ""output"": {""channel_queried"": ""organic"", ""metric"": ""conversion_rate"", ""detected_changepoint"": ""2026-02-12"", ""t_stat"": 14.366, ""p_value"": 0.0, ""significant"": ""True""}}, {""tool"": ""detect_changepoints"", ""input"": {""metric_col"": ""conversion_rate"", ""channel"": ""paid""}, ""output"": {""channel_queried"": ""paid"", ""metric"": ""conversion_rate"", ""detected_changepoint"": ""2026-02-15"", ""t_stat"": 14.822, ""p_value"": 0.0, ""significant"": ""True""}}, {""tool"": ""detect_changepoints"", ""input"": {""metric_col"": ""conversion_rate"", ""channel"": ""referral""}, ""output"": {""channel_queried"": ""referral"", ""metric"": ""conversion_rate"", ""detected_changepoint"": ""2026-02-12"", ""t_stat"": 15.748, ""p_value"": 0.0, ""significant"": ""True""}}]","## Final Diagnosis
 
-### Root Cause: **Dual-factor collapse — a sitewide funnel/product issue starting ~Feb 12, compounded by a paid budget freeze on Feb 14**
+### Root Cause: Sitewide Funnel/Product Degradation beginning ~February 12–15, 2026, coinciding with a Q1 Paid Budget Freeze
 
 ---
 
@@ -151,35 +145,47 @@ scenario_04,pricing_change,,6,"['segment_comparison_tool', 'detect_changepoints'
 
 | Signal | Finding |
 |---|---|
-| **Changepoint — Signups** | Statistically significant break on **Feb 14** (t=4.95, p≈0) |
-| **Changepoint — Conversion Rate** | Even stronger break on **Feb 12** (t=22.6, p≈0) — *2 days earlier* |
-| **Channel breakdown (signups)** | All three channels dropped: Referral −25.4%, Paid −24.6%, Organic −20.9% |
-| **Channel breakdown (conversion)** | All three channels dropped: Paid −24.4%, Referral −23.9%, Organic −22.7% |
-| **Known business event** | Q1 budget freeze — paid spend cut ~50% on **Feb 14** |
-| **Event alignment for Feb 12** | No known event found |
+| **Channels affected (signups)** | All three — Referral (−25.4%), Paid (−24.6%), Organic (−20.9%) |
+| **Channels affected (conversion rate)** | All three — Paid (−24.4%), Referral (−23.9%), Organic (−22.7%) |
+| **Signup changepoint** | Feb 14, 2026 (t-stat = 4.95, p ≈ 0) |
+| **Conversion rate changepoint (all channels)** | Feb 12, 2026 (t-stat = **22.6**, p ≈ 0) — extremely strong |
+| **Conversion rate changepoint (organic)** | Feb 12 (t-stat = 14.4) |
+| **Conversion rate changepoint (referral)** | Feb 12 (t-stat = 15.7) |
+| **Conversion rate changepoint (paid)** | Feb 15 (t-stat = 14.8) |
+| **Known business event** | Q1 budget freeze — paid spend cut ~50% on **Feb 14, 2026** |
 
 ---
 
 ### Interpretation
 
-There are **two overlapping problems**:
+There are **two overlapping problems**, not one:
 
-1. **🚨 Primary (Unknown) Issue — Sitewide conversion funnel degradation starting ~Feb 12**
-   The conversion rate dropped sharply and uniformly across *all* channels (organic, paid, referral) starting Feb 12 — two days *before* any known business action. This pattern — same-magnitude drops across unrelated acquisition channels — is the hallmark of a **sitewide product or funnel issue** (e.g., a broken signup flow, a bad code deploy, a UX regression, or a pricing/offer change). This is the *dominant* driver since it affects conversion, not just traffic.
+#### 1. 🔴 Primary Issue — Sitewide Conversion Rate Collapse (High Confidence)
+The dominant signal is a **conversion rate drop of ~23–25% across ALL channels simultaneously**, starting around **Feb 12, 2026**. Because this affects organic and referral equally — channels completely independent of paid spend — the paid budget freeze **cannot explain this alone**. A cross-channel conversion drop of this magnitude almost always points to a **sitewide product or funnel problem**, such as:
+- A broken or regressed signup flow (e.g., a bad code deploy around Feb 12)
+- A pricing or plan change that reduced incentive to sign up
+- A UI/UX change that introduced friction in the onboarding funnel
 
-2. **⚠️ Secondary (Known) Issue — Paid spend cut on Feb 14**
-   The Q1 budget freeze cut paid spend by ~50%, which reduces paid traffic and explains some of the *signups* drop in the paid channel. However, this alone cannot explain why organic and referral conversion rates also fell — those channels have independent traffic sources.
+#### 2. 🟡 Secondary Issue — Paid Traffic Drop (Contributed, but not the root cause)
+The **Q1 budget freeze (paid spend cut ~50% on Feb 14)** is a confirmed event and explains the reduction in paid signups volume. However, since paid conversion rate also dropped independently (not just traffic), and organic/referral were equally impacted, the budget freeze is a **contributing factor to the signup count decline, not the root cause of the anomaly**.
+
+---
+
+### Confidence Level: **High**
+
+The evidence is consistent and non-contradictory:
+- The conversion rate changepoint t-statistic of **22.6** is exceptionally strong — this is not noise
+- All three channels broke at virtually the **same moment** (Feb 12–15), ruling out channel-specific causes
+- The paid budget freeze is confirmed but insufficient to explain the cross-channel conversion degradation
 
 ---
 
 ### Recommended Next Steps
-
-- **Immediately investigate deploys/releases around Feb 11–12** — a code change is the most likely culprit for a simultaneous cross-channel conversion drop.
-- Check for **UX or checkout funnel regressions** (e.g., broken signup form, failed A/B test rollout, SSL/auth errors).
-- Separately, evaluate whether the **paid budget freeze** was intentional and budget the expected signup loss from it accordingly.
-
-### Confidence Level: **High (for the dual-factor diagnosis)** / **Medium (for the specific Feb 12 root cause)** — the conversion rate signal is statistically very strong (t=22.6), but the exact cause of the Feb 12 break is unconfirmed since no known event was found in the system.",True,True,True
-scenario_05,spend_cut,paid,5,"['segment_comparison_tool', 'detect_changepoints', 'segment_comparison_tool', 'detect_changepoints', 'check_event_alignment']","The evidence is conclusive. Here is the full diagnosis:
+1. **Audit deploys and system changes around Feb 12, 2026** — look for any code releases, A/B test launches, or infrastructure changes that touched the signup/onboarding flow
+2. **Check for pricing or plan changes** effective around that date
+3. **Review the paid budget freeze separately** — restore spend if/when appropriate, but don't expect that alone to recover signups to prior levels until the conversion issue is resolved
+4. **Instrument the funnel** step-by-step (landing page → signup form → completion) to identify exactly where drop-off increased post Feb 12",True,True,True
+scenario_05,spend_cut,paid,6,"['segment_comparison_tool', 'segment_comparison_tool', 'detect_changepoints', 'segment_comparison_tool', 'detect_changepoints', 'check_event_alignment']","[{""tool"": ""segment_comparison_tool"", ""input"": {""split_date"": ""2024-02-01""}, ""output"": {""split_date"": ""2024-02-01"", ""signups_by_channel"": [{""channel"": ""organic"", ""before_mean"": null, ""after_mean"": null, ""pct_change"": null, ""p_value"": null, ""significant"": false, ""warning"": ""Insufficient data for a reliable comparison: 0 days before, 90 days after split_date. Need at least 5 days on each side \u2014 try a split_date closer to the middle of the data range.""}, {""channel"": ""paid"", ""before_mean"": null, ""after_mean"": null, ""pct_change"": null, ""p_value"": null, ""significant"": false, ""warning"": ""Insufficient data for a reliable comparison: 0 days before, 90 days after split_date. Need at least 5 days on each side \u2014 try a split_date closer to the middle of the data range.""}, {""channel"": ""referral"", ""before_mean"": null, ""after_mean"": null, ""pct_change"": null, ""p_value"": null, ""significant"": false, ""warning"": ""Insufficient data for a reliable comparison: 0 days before, 90 days after split_date. Need at least 5 days on each side \u2014 try a split_date closer to the middle of the data range.""}], ""conversion_by_channel"": [{""channel"": ""organic"", ""before_mean"": null, ""after_mean"": null, ""pct_change"": null, ""p_value"": null, ""significant"": false, ""warning"": ""Insufficient data for a reliable comparison: 0 days before, 90 days after split_date. Need at least 5 days on each side \u2014 try a split_date closer to the middle of the data range.""}, {""channel"": ""paid"", ""before_mean"": null, ""after_mean"": null, ""pct_change"": null, ""p_value"": null, ""significant"": false, ""warning"": ""Insufficient data for a reliable comparison: 0 days before, 90 days after split_date. Need at least 5 days on each side \u2014 try a split_date closer to the middle of the data range.""}, {""channel"": ""referral"", ""before_mean"": null, ""after_mean"": null, ""pct_change"": null, ""p_value"": null, ""significant"": false, ""warning"": ""Insufficient data for a reliable comparison: 0 days before, 90 days after split_date. Need at least 5 days on each side \u2014 try a split_date closer to the middle of the data range.""}], ""channels_with_signups_drop"": [], ""channels_with_conversion_drop"": [], ""interpretation"": ""No channel shows a significant drop in signups or conversion rate.""}}, {""tool"": ""segment_comparison_tool"", ""input"": {""split_date"": ""2024-02-15""}, ""output"": {""split_date"": ""2024-02-15"", ""signups_by_channel"": [{""channel"": ""organic"", ""before_mean"": null, ""after_mean"": null, ""pct_change"": null, ""p_value"": null, ""significant"": false, ""warning"": ""Insufficient data for a reliable comparison: 0 days before, 90 days after split_date. Need at least 5 days on each side \u2014 try a split_date closer to the middle of the data range.""}, {""channel"": ""paid"", ""before_mean"": null, ""after_mean"": null, ""pct_change"": null, ""p_value"": null, ""significant"": false, ""warning"": ""Insufficient data for a reliable comparison: 0 days before, 90 days after split_date. Need at least 5 days on each side \u2014 try a split_date closer to the middle of the data range.""}, {""channel"": ""referral"", ""before_mean"": null, ""after_mean"": null, ""pct_change"": null, ""p_value"": null, ""significant"": false, ""warning"": ""Insufficient data for a reliable comparison: 0 days before, 90 days after split_date. Need at least 5 days on each side \u2014 try a split_date closer to the middle of the data range.""}], ""conversion_by_channel"": [{""channel"": ""organic"", ""before_mean"": null, ""after_mean"": null, ""pct_change"": null, ""p_value"": null, ""significant"": false, ""warning"": ""Insufficient data for a reliable comparison: 0 days before, 90 days after split_date. Need at least 5 days on each side \u2014 try a split_date closer to the middle of the data range.""}, {""channel"": ""paid"", ""before_mean"": null, ""after_mean"": null, ""pct_change"": null, ""p_value"": null, ""significant"": false, ""warning"": ""Insufficient data for a reliable comparison: 0 days before, 90 days after split_date. Need at least 5 days on each side \u2014 try a split_date closer to the middle of the data range.""}, {""channel"": ""referral"", ""before_mean"": null, ""after_mean"": null, ""pct_change"": null, ""p_value"": null, ""significant"": false, ""warning"": ""Insufficient data for a reliable comparison: 0 days before, 90 days after split_date. Need at least 5 days on each side \u2014 try a split_date closer to the middle of the data range.""}], ""channels_with_signups_drop"": [], ""channels_with_conversion_drop"": [], ""interpretation"": ""No channel shows a significant drop in signups or conversion rate.""}}, {""tool"": ""detect_changepoints"", ""input"": {""metric_col"": ""signups"", ""channel"": null}, ""output"": {""channel_queried"": ""all channels combined"", ""metric"": ""signups"", ""detected_changepoint"": ""2026-02-20"", ""t_stat"": 6.112, ""p_value"": 0.0, ""significant"": ""True""}}, {""tool"": ""segment_comparison_tool"", ""input"": {""split_date"": ""2026-02-20""}, ""output"": {""split_date"": ""2026-02-20"", ""signups_by_channel"": [{""channel"": ""paid"", ""before_mean"": 133.1, ""after_mean"": 26.8, ""pct_change"": -79.8, ""p_value"": 0.0, ""significant"": true, ""warning"": null}, {""channel"": ""referral"", ""before_mean"": 73.1, ""after_mean"": 72.4, ""pct_change"": -0.9, ""p_value"": 0.8815, ""significant"": false, ""warning"": null}, {""channel"": ""organic"", ""before_mean"": 158.1, ""after_mean"": 163.2, ""pct_change"": 3.2, ""p_value"": 0.5657, ""significant"": false, ""warning"": null}], ""conversion_by_channel"": [{""channel"": ""paid"", ""before_mean"": 0.1, ""after_mean"": 0.1, ""pct_change"": -0.3, ""p_value"": 0.8502, ""significant"": false, ""warning"": null}, {""channel"": ""referral"", ""before_mean"": 0.1, ""after_mean"": 0.1, ""pct_change"": 2.2, ""p_value"": 0.1637, ""significant"": false, ""warning"": null}, {""channel"": ""organic"", ""before_mean"": 0.0, ""after_mean"": 0.0, ""pct_change"": 2.6, ""p_value"": 0.0962, ""significant"": false, ""warning"": null}], ""channels_with_signups_drop"": [""paid""], ""channels_with_conversion_drop"": [], ""interpretation"": ""Signups dropped in ['paid'] with no conversion-rate change \u2014 likely a traffic-volume issue isolated to ['paid'].""}}, {""tool"": ""detect_changepoints"", ""input"": {""metric_col"": ""conversion_rate"", ""channel"": null}, ""output"": {""channel_queried"": ""all channels combined"", ""metric"": ""conversion_rate"", ""detected_changepoint"": ""2026-03-17"", ""t_stat"": -1.832, ""p_value"": 0.0772, ""significant"": ""False""}}, {""tool"": ""check_event_alignment"", ""input"": {""candidate_date"": ""2026-02-20"", ""channel"": ""paid""}, ""output"": {""candidate_date"": ""2026-02-20"", ""channel_queried"": ""paid"", ""matching_events"": [{""date"": ""2026-02-18"", ""event_type"": ""spend_change"", ""channel"": ""paid"", ""description"": ""Marketing cut paid ad spend ~80%"", ""days_from_candidate"": -2}, {""date"": ""2026-02-20"", ""event_type"": ""deploy"", ""channel"": null, ""description"": ""Signup flow refactor deployed"", ""days_from_candidate"": 0}], ""interpretation"": ""Marketing cut paid ad spend ~80% on 2026-02-18 (-2 days from candidate); Signup flow refactor deployed on 2026-02-20 (+0 days from candidate)""}}]","The investigation is complete. All the evidence converges on a single, clear root cause. Here is the full diagnosis:
 
 ---
 
@@ -187,261 +193,247 @@ scenario_05,spend_cut,paid,5,"['segment_comparison_tool', 'detect_changepoints',
 
 ### Most Likely Root Cause: **~80% Cut in Paid Ad Spend on 2026-02-18**
 
-**Confidence Level: 🟢 High**
+### Confidence Level: **High ✅**
 
 ---
 
 ### Evidence Summary
 
-| Finding | Detail |
+| Step | Finding |
 |---|---|
-| **Changepoint date** | 2026-02-20 — a highly significant break (t-stat: 6.11, p ≈ 0.00) |
-| **Channel isolation** | Only **paid** signups dropped (-79.8%, p ≈ 0.00); organic (+3.2%) and referral (-0.9%) were flat and not significant |
-| **Traffic, not funnel** | Paid conversion rate was completely stable (-0.3%, p = 0.85) — the funnel itself is working fine |
-| **Business event match** | Marketing cut paid ad spend by ~80% on **2026-02-18** — just 2 days before the changepoint, a perfectly natural lag for traffic to respond |
+| **Changepoint Detection** | A statistically significant break in signups was detected on **2026-02-20** (t-stat: 6.11, p-value ≈ 0.0) |
+| **Channel Segmentation** | The signup drop is **entirely isolated to the paid channel**: −79.8% (from 133.1/day → 26.8/day). Organic (+3.2%) and referral (−0.9%) are completely unaffected. |
+| **Conversion Rate Analysis** | Conversion rate is **stable across all channels** (no significant change). This rules out a funnel/UX problem — the issue is purely reduced traffic volume. |
+| **Event Alignment** | On **2026-02-18** (just 2 days before the changepoint), marketing **cut paid ad spend by ~80%** — almost exactly matching the −79.8% signup drop in that channel. |
 
 ---
 
 ### What Happened
+Marketing deliberately reduced paid advertising spend by roughly 80% around February 18th. Because the paid channel was generating ~133 signups/day before the cut, and organic/referral channels were not affected, the overall signup volume fell sharply. The funnel itself (conversion rate) is healthy — when users do arrive, they sign up at the same rate as before.
 
-Marketing significantly reduced paid advertising budget (~80% cut) on February 18th. This directly starved the paid channel of traffic. Since organic and referral channels were unaffected and conversion rates remained stable across all channels, this is purely a **volume problem** — fewer paid visitors arrived, resulting in far fewer paid signups. The signup funnel itself is healthy.
-
----
-
-### What About the Signup Flow Refactor (2026-02-20)?
-
-A code deploy also landed on the exact changepoint date. However, this is **unlikely to be a contributing cause** because:
-1. Conversion rates did **not** drop — a broken signup flow would suppress conversions.
-2. Organic and referral signups were **unaffected** — a deploy issue would hurt all channels.
-
-The deploy appears to be a coincidence, but it's worth a quick smoke test to be fully ruled out.
-
----
+### What to Rule Out
+- A **signup flow refactor** was also deployed on 2026-02-20, but this is **not the cause**: conversion rates remained stable after that deploy, meaning the refactor had no negative impact.
+- This is **not an organic or referral problem** — both channels are performing normally.
 
 ### Recommended Actions
-1. **✅ Primary fix:** Confirm with Marketing whether the ad spend cut was intentional (budget reallocation, campaign pause, etc.) and restore spend if the drop in signups was unintended.
-2. **🔎 Secondary check:** Run a sanity test on the signup flow refactor to confirm it hasn't introduced subtle issues (even though conversion data looks clean).",True,True,True
-scenario_06,traffic_collapse,organic,7,"['segment_comparison_tool', 'detect_changepoints', 'segment_comparison_tool', 'check_event_alignment', 'segment_comparison_tool', 'detect_changepoints', 'check_event_alignment']","I now have all the evidence needed to deliver a definitive diagnosis. Here is my full findings report:
-
----
-
-## 🔍 Anomaly Investigation Report: Signup Drop in February
-
-### ✅ Final Diagnosis
-
-**Root Cause: A significant, unexplained drop in organic traffic volume beginning ~February 12, 2026.**
-
----
-
-### 📊 Evidence Summary
-
-| Finding | Detail |
-|---|---|
-| **Changepoint detected** | February 12, 2026 (t-stat: 3.748, p < 0.001 — highly significant) |
-| **Channel isolated** | **Organic only** |
-| **Organic signups drop** | –41.6% (before mean: 167.2/day → after mean: 97.7/day, p ≈ 0.0) |
-| **Paid signups** | +2.4% — no significant change |
-| **Referral signups** | –3.9% — no significant change |
-| **Conversion rate** | No significant change in any channel |
-| **Known business event** | ❌ None found near Feb 12 |
-
----
-
-### 🧠 Interpretation
-
-1. **It's a traffic problem, not a funnel problem.** Conversion rates are stable across all channels. Visitors who do arrive are converting at the same rate as before — meaning the signup flow, landing pages, and onboarding are working fine.
-
-2. **It's isolated to organic.** Paid and referral channels are completely unaffected, which rules out a broad business-level issue (e.g., pricing change, site outage, or general demand decline).
-
-3. **The most likely culprits for an organic traffic drop are:**
-   - 🔎 **A Google/search algorithm update** around Feb 12 that penalized or downranked key landing pages
-   - 📉 **SEO regression** — e.g., a site deploy that introduced crawl errors, broken canonical tags, or accidental `noindex` directives
-   - 📋 **Content deindexing** — important high-traffic pages may have been removed or de-indexed
-
-4. **No known internal event explains it.** The event log returned empty, making an internal/intentional cause less likely — though it's worth double-checking with the engineering and marketing teams for unlogged deploys or SEO changes around that date.
-
----
-
-### 🎯 Confidence Level: **High**
-
-The statistical signal is extremely strong (p < 0.001 for the changepoint; p ≈ 0.0 for the segment comparison), the isolation to organic is unambiguous, and the stable conversion rate clearly rules out funnel issues. The only uncertainty is the *specific* sub-cause within organic traffic loss (algorithm update vs. technical SEO regression), which requires manual inspection of Google Search Console data.
-
----
-
-### 🔧 Recommended Next Steps
-
-1. **Check Google Search Console** for impressions/clicks around Feb 12 — look for drops in specific queries or page types.
-2. **Audit for technical SEO issues** deployed around that date (robots.txt, sitemaps, `noindex` tags, Core Web Vitals regressions).
-3. **Cross-reference with Google algorithm update trackers** (e.g., MozCast, SEMrush Sensor) for activity on or around Feb 12, 2026.
-4. **Ask the engineering team** if any unlogged deploys or infrastructure changes occurred around that date.",True,True,True
-scenario_07,conversion_bug,organic,12,"['segment_comparison_tool', 'segment_comparison_tool', 'detect_changepoints', 'detect_changepoints', 'detect_changepoints', 'detect_changepoints', 'detect_changepoints', 'detect_changepoints', 'detect_changepoints', 'detect_changepoints', 'check_event_alignment', 'check_event_alignment']","The evidence is now conclusive. I have everything needed for a final diagnosis.
+1. **Confirm with marketing** whether the paid spend cut was intentional (budget reallocation, campaign pause, etc.).
+2. If the signup drop is undesirable, **restoring paid spend** should recover volume to prior levels, since the conversion funnel is intact.
+3. If the spend cut was intentional, update business forecasts to reflect the new lower paid-traffic baseline (~27 signups/day from paid vs. ~133 previously).",True,True,True
+scenario_06,traffic_collapse,organic,10,"['segment_comparison_tool', 'segment_comparison_tool', 'detect_changepoints', 'detect_changepoints', 'segment_comparison_tool', 'detect_changepoints', 'detect_changepoints', 'detect_changepoints', 'check_event_alignment', 'check_event_alignment']","[{""tool"": ""segment_comparison_tool"", ""input"": {""split_date"": ""2024-02-01""}, ""output"": {""split_date"": ""2024-02-01"", ""signups_by_channel"": [{""channel"": ""organic"", ""before_mean"": null, ""after_mean"": null, ""pct_change"": null, ""p_value"": null, ""significant"": false, ""warning"": ""Insufficient data for a reliable comparison: 0 days before, 90 days after split_date. Need at least 5 days on each side \u2014 try a split_date closer to the middle of the data range.""}, {""channel"": ""paid"", ""before_mean"": null, ""after_mean"": null, ""pct_change"": null, ""p_value"": null, ""significant"": false, ""warning"": ""Insufficient data for a reliable comparison: 0 days before, 90 days after split_date. Need at least 5 days on each side \u2014 try a split_date closer to the middle of the data range.""}, {""channel"": ""referral"", ""before_mean"": null, ""after_mean"": null, ""pct_change"": null, ""p_value"": null, ""significant"": false, ""warning"": ""Insufficient data for a reliable comparison: 0 days before, 90 days after split_date. Need at least 5 days on each side \u2014 try a split_date closer to the middle of the data range.""}], ""conversion_by_channel"": [{""channel"": ""organic"", ""before_mean"": null, ""after_mean"": null, ""pct_change"": null, ""p_value"": null, ""significant"": false, ""warning"": ""Insufficient data for a reliable comparison: 0 days before, 90 days after split_date. Need at least 5 days on each side \u2014 try a split_date closer to the middle of the data range.""}, {""channel"": ""paid"", ""before_mean"": null, ""after_mean"": null, ""pct_change"": null, ""p_value"": null, ""significant"": false, ""warning"": ""Insufficient data for a reliable comparison: 0 days before, 90 days after split_date. Need at least 5 days on each side \u2014 try a split_date closer to the middle of the data range.""}, {""channel"": ""referral"", ""before_mean"": null, ""after_mean"": null, ""pct_change"": null, ""p_value"": null, ""significant"": false, ""warning"": ""Insufficient data for a reliable comparison: 0 days before, 90 days after split_date. Need at least 5 days on each side \u2014 try a split_date closer to the middle of the data range.""}], ""channels_with_signups_drop"": [], ""channels_with_conversion_drop"": [], ""interpretation"": ""No channel shows a significant drop in signups or conversion rate.""}}, {""tool"": ""segment_comparison_tool"", ""input"": {""split_date"": ""2024-02-15""}, ""output"": {""split_date"": ""2024-02-15"", ""signups_by_channel"": [{""channel"": ""organic"", ""before_mean"": null, ""after_mean"": null, ""pct_change"": null, ""p_value"": null, ""significant"": false, ""warning"": ""Insufficient data for a reliable comparison: 0 days before, 90 days after split_date. Need at least 5 days on each side \u2014 try a split_date closer to the middle of the data range.""}, {""channel"": ""paid"", ""before_mean"": null, ""after_mean"": null, ""pct_change"": null, ""p_value"": null, ""significant"": false, ""warning"": ""Insufficient data for a reliable comparison: 0 days before, 90 days after split_date. Need at least 5 days on each side \u2014 try a split_date closer to the middle of the data range.""}, {""channel"": ""referral"", ""before_mean"": null, ""after_mean"": null, ""pct_change"": null, ""p_value"": null, ""significant"": false, ""warning"": ""Insufficient data for a reliable comparison: 0 days before, 90 days after split_date. Need at least 5 days on each side \u2014 try a split_date closer to the middle of the data range.""}], ""conversion_by_channel"": [{""channel"": ""organic"", ""before_mean"": null, ""after_mean"": null, ""pct_change"": null, ""p_value"": null, ""significant"": false, ""warning"": ""Insufficient data for a reliable comparison: 0 days before, 90 days after split_date. Need at least 5 days on each side \u2014 try a split_date closer to the middle of the data range.""}, {""channel"": ""paid"", ""before_mean"": null, ""after_mean"": null, ""pct_change"": null, ""p_value"": null, ""significant"": false, ""warning"": ""Insufficient data for a reliable comparison: 0 days before, 90 days after split_date. Need at least 5 days on each side \u2014 try a split_date closer to the middle of the data range.""}, {""channel"": ""referral"", ""before_mean"": null, ""after_mean"": null, ""pct_change"": null, ""p_value"": null, ""significant"": false, ""warning"": ""Insufficient data for a reliable comparison: 0 days before, 90 days after split_date. Need at least 5 days on each side \u2014 try a split_date closer to the middle of the data range.""}], ""channels_with_signups_drop"": [], ""channels_with_conversion_drop"": [], ""interpretation"": ""No channel shows a significant drop in signups or conversion rate.""}}, {""tool"": ""detect_changepoints"", ""input"": {""metric_col"": ""signups"", ""channel"": null}, ""output"": {""channel_queried"": ""all channels combined"", ""metric"": ""signups"", ""detected_changepoint"": ""2026-02-12"", ""t_stat"": 3.748, ""p_value"": 0.0003, ""significant"": ""True""}}, {""tool"": ""detect_changepoints"", ""input"": {""metric_col"": ""conversion_rate"", ""channel"": null}, ""output"": {""channel_queried"": ""all channels combined"", ""metric"": ""conversion_rate"", ""detected_changepoint"": ""2026-03-21"", ""t_stat"": 2.724, ""p_value"": 0.0171, ""significant"": ""True""}}, {""tool"": ""segment_comparison_tool"", ""input"": {""split_date"": ""2026-02-12""}, ""output"": {""split_date"": ""2026-02-12"", ""signups_by_channel"": [{""channel"": ""organic"", ""before_mean"": 167.2, ""after_mean"": 97.7, ""pct_change"": -41.6, ""p_value"": 0.0, ""significant"": true, ""warning"": null}, {""channel"": ""referral"", ""before_mean"": 73.8, ""after_mean"": 70.9, ""pct_change"": -3.9, ""p_value"": 0.4849, ""significant"": false, ""warning"": null}, {""channel"": ""paid"", ""before_mean"": 131.3, ""after_mean"": 134.4, ""pct_change"": 2.4, ""p_value"": 0.699, ""significant"": false, ""warning"": null}], ""conversion_by_channel"": [{""channel"": ""referral"", ""before_mean"": 0.1, ""after_mean"": 0.1, ""pct_change"": -2.4, ""p_value"": 0.1158, ""significant"": false, ""warning"": null}, {""channel"": ""paid"", ""before_mean"": 0.1, ""after_mean"": 0.1, ""pct_change"": -1.4, ""p_value"": 0.3523, ""significant"": false, ""warning"": null}, {""channel"": ""organic"", ""before_mean"": 0.0, ""after_mean"": 0.0, ""pct_change"": -0.0, ""p_value"": 0.9985, ""significant"": false, ""warning"": null}], ""channels_with_signups_drop"": [""organic""], ""channels_with_conversion_drop"": [], ""interpretation"": ""Signups dropped in ['organic'] with no conversion-rate change \u2014 likely a traffic-volume issue isolated to ['organic'].""}}, {""tool"": ""detect_changepoints"", ""input"": {""metric_col"": ""signups"", ""channel"": ""organic""}, ""output"": {""channel_queried"": ""organic"", ""metric"": ""signups"", ""detected_changepoint"": ""2026-02-12"", ""t_stat"": 8.564, ""p_value"": 0.0, ""significant"": ""True""}}, {""tool"": ""detect_changepoints"", ""input"": {""metric_col"": ""signups"", ""channel"": ""paid""}, ""output"": {""channel_queried"": ""paid"", ""metric"": ""signups"", ""detected_changepoint"": ""2026-01-12"", ""t_stat"": -1.142, ""p_value"": 0.2726, ""significant"": ""False""}}, {""tool"": ""detect_changepoints"", ""input"": {""metric_col"": ""signups"", ""channel"": ""referral""}, ""output"": {""channel_queried"": ""referral"", ""metric"": ""signups"", ""detected_changepoint"": ""2026-01-24"", ""t_stat"": 1.421, ""p_value"": 0.1637, ""significant"": ""False""}}, {""tool"": ""check_event_alignment"", ""input"": {""candidate_date"": ""2026-02-12"", ""channel"": null}, ""output"": {""candidate_date"": ""2026-02-12"", ""channel_queried"": null, ""matching_events"": [{""date"": ""2026-02-14"", ""event_type"": ""spend_change"", ""channel"": ""paid"", ""description"": ""Q1 budget freeze \u2014 paid spend cut ~50%"", ""days_from_candidate"": 2}], ""interpretation"": ""Q1 budget freeze \u2014 paid spend cut ~50% on 2026-02-14 (+2 days from candidate)""}}, {""tool"": ""check_event_alignment"", ""input"": {""candidate_date"": ""2026-02-12"", ""channel"": ""organic""}, ""output"": {""candidate_date"": ""2026-02-12"", ""channel_queried"": ""organic"", ""matching_events"": [], ""interpretation"": ""No known event found within 2 days of 2026-02-12.""}}]","I now have a comprehensive picture. No known internal event aligns with the organic channel on that date. Here is the full diagnosis:
 
 ---
 
 ## 🔍 Root Cause Diagnosis
 
-### Most Likely Root Cause: **Broken or Degraded Signup Flow — Caused by the February 20 Deployment**
-**Confidence: HIGH**
-
----
-
-### What the Evidence Shows
-
-| Signal | Finding |
-|---|---|
-| **Signup changepoint (organic)** | Feb 21 — t-stat **11.32**, p ≈ 0 ✅ Highly significant |
-| **Conversion rate changepoint (organic)** | Feb 22 — t-stat **37.76**, p ≈ 0 ✅ Extremely significant |
-| **Paid channel signups/conversion** | No significant changepoint ❌ Not affected |
-| **Referral channel signups/conversion** | No significant changepoint ❌ Not affected |
-| **Known business event** | `""Signup flow refactor deployed""` on **Feb 20** — 1 day before the signup drop, 2 days before the conversion rate drop ✅ Direct alignment |
-
----
-
-### Narrative
-
-1. **It's a funnel problem, not a traffic problem.** The organic channel shows a dramatic drop in *conversion rate* (t-stat = 37.76) — the strongest signal in the entire investigation. This means users were still arriving, but failing to complete signup. Paid and referral channels are unaffected.
-
-2. **It's isolated to organic.** Paid and referral show no statistically significant changes in either signups or conversion rate around this period, ruling out a broad market or seasonal explanation.
-
-3. **The timing perfectly matches a known deploy.** A **""Signup flow refactor""** was deployed on **February 20** — just 1 day before the organic signup drop and 2 days before the organic conversion rate collapse. This is the textbook fingerprint of a bad deployment introducing a regression in the signup funnel.
-
-4. **Why only organic?** Organic users often land on different entry points (e.g., homepage, SEO landing pages) compared to paid or referral users who are sent to dedicated campaign landing pages. The refactored signup flow likely only affected organic entry paths, or organic users are more sensitive to UX friction.
-
----
-
-### Recommended Actions
-
-- 🔴 **Immediate:** Review the Feb 20 signup flow refactor for regressions — check for broken form steps, JS errors, or redirect failures specifically on organic landing pages.
-- 🔍 **Investigate:** Pull session recordings and funnel drop-off data for organic users starting Feb 20.
-- ↩️ **Consider rollback** of the signup flow refactor while the bug is identified and fixed.
-- ✅ **Validate fix** using the segment comparison tool post-fix to confirm organic conversion rate recovers.",True,True,True
-scenario_08,sitewide_bug,,5,"['segment_comparison_tool', 'detect_changepoints', 'segment_comparison_tool', 'detect_changepoints', 'check_event_alignment']","That's a perfect match. I now have sufficient evidence for a definitive diagnosis. Here is the full breakdown:
-
----
-
-## 🔍 Investigation Summary
-
-### Root Cause: **Payment Processor Migration (Deployed 2026-02-08)**
+### Summary
+**The February signup drop is real, statistically significant, and is entirely driven by a collapse in organic traffic — not a funnel/conversion problem, and not related to paid or referral channels.**
 
 ---
 
 ### Evidence Chain
 
-| Step | Finding |
-|---|---|
-| **Changepoint Detection (Signups)** | A statistically significant break detected on **2026-02-07** (t=11.4, p≈0.0) |
-| **Changepoint Detection (Conversion Rate)** | An even stronger break detected on **2026-02-08** (t=64.9, p≈0.0) — nearly simultaneous |
-| **Segment Comparison** | All three channels (organic, paid, referral) each dropped ~50% in both **signups** and **conversion rate** — perfectly uniform |
-| **Event Alignment** | A **payment processor migration** was deployed on **2026-02-08**, aligning within 1 day of both changepoints |
+| Step | Tool | Finding |
+|---|---|---|
+| 1. Changepoint Detection (all channels) | `detect_changepoints` | Strongest break in signups: **2026-02-12** (t=3.75, p=0.0003) |
+| 2. Segment Comparison (split 2026-02-12) | `segment_comparison_tool` | **Organic signups dropped 41.6%** (167 → 98/day, p≈0.000). Paid (+2.4%) and Referral (-3.9%) are both **not significant**. |
+| 3. Conversion Rate | `segment_comparison_tool` | **No conversion rate change** in any channel — rules out a funnel/UX issue |
+| 4. Per-Channel Changepoint (organic) | `detect_changepoints` | Organic-only changepoint confirmed at **2026-02-12** with extremely high confidence (t=8.56, p≈0.000) |
+| 5. Per-Channel Changepoints (paid, referral) | `detect_changepoints` | No significant changepoints in paid or referral |
+| 6. Event Alignment (global) | `check_event_alignment` | A **50% paid budget cut** was logged on 2026-02-14 — but this does *not* explain the organic drop |
+| 7. Event Alignment (organic-specific) | `check_event_alignment` | **No known internal event** found for the organic channel around 2026-02-12 |
 
 ---
 
-### Diagnosis
+### Most Likely Root Cause
+> **An external organic traffic shock starting on February 12, 2026** — most likely a **search engine algorithm update or a drop in SEO rankings** — caused a ~42% reduction in organic-sourced signups. This is an **unexplained anomaly** with no matching internal business event.
 
-- **Type of problem:** Funnel/product issue — *not* a traffic issue. Visits held steady; users are arriving but failing to complete signup.
-- **Scope:** Sitewide — all channels are equally affected (~50% drop), ruling out any channel-specific cause (e.g., ad budget cut, SEO penalty, referral partner issue).
-- **Most likely mechanism:** The payment processor migration introduced a bug, error, or UX friction in the signup/checkout flow, causing roughly half of would-be signups to fail or abandon.
+- It is a **traffic volume problem**, not a conversion/funnel problem.
+- It is **channel-specific** (organic only), ruling out site-wide issues.
+- It is **not explained by any known internal action** (no deploy, pricing change, or spend change in organic).
 
 ---
 
-### Confidence: 🟢 **High**
+### Confidence Level: 🟡 Medium-High
 
-The evidence is unambiguous:
-1. The timing is precise and consistent (signups and conversion both break on the same 1–2 day window).
-2. The uniform ~50% drop across all channels is the hallmark of a sitewide product change — not a demand-side issue.
-3. A known internal event (payment processor migration) lands exactly on the changepoint date.
+**High confidence** that organic traffic is the proximate cause. **Medium confidence** on the underlying driver (external search algorithm change is the most parsimonious explanation, but SEO ranking drops, a brand search decline, or a tracking/attribution issue cannot be fully ruled out without additional external data like Google Search Console impressions).
 
 ---
 
 ### Recommended Next Steps
-1. **Immediately audit** the payment processor migration for errors in the signup flow (failed API calls, broken redirect URLs, UI rendering bugs).
-2. **Check error logs** from 2026-02-08 onward for new exception types in the payment/signup service.
-3. **Consider a rollback or hotfix** if the migration has introduced a regression.
-4. **Monitor conversion rate** closely after any fix — it should recover to the pre-Feb-7 baseline (~10% conversion rate).",True,True,True
-scenario_09,pricing_change,,5,"['segment_comparison_tool', 'detect_changepoints', 'detect_changepoints', 'segment_comparison_tool', 'check_event_alignment']","I now have a comprehensive picture. Let me deliver the final diagnosis.
-
----
-
-## 🔍 Investigation Complete — Final Diagnosis
-
-### Root Cause: **Sitewide Funnel/Product Degradation starting ~March 7, 2026**
-
----
-
-### 📊 Key Findings
-
-| Dimension | Finding |
-|---|---|
-| **When** | Changepoint detected on **March 7–8, 2026** (highly significant: p ≈ 0.0, t-stat up to 23.5) |
-| **Which channels affected** | **All three** — organic, paid, and referral |
-| **Signup drop (organic)** | −30.2% (164 → 115 avg/day) |
-| **Signup drop (paid)** | −29.8% (136 → 95 avg/day) |
-| **Signup drop (referral)** | −27.1% (71 → 52 avg/day) |
-| **Conversion rate drop** | −27% to −28% across **all channels** |
-| **Known business event** | ❌ None found |
-
----
-
-### 🧠 Interpretation
-
-The evidence points to a **sitewide funnel or product issue**, not a traffic/marketing problem. Here's why:
-
-1. **All channels dropped uniformly (~28–30%)** — If this were a marketing issue (e.g., reduced ad spend or SEO demotion), we'd expect only one channel to be impacted. The near-identical drop across organic, paid, *and* referral rules that out.
-
-2. **Conversion rate dropped alongside signups** — Traffic alone didn't fall; the ability to *convert* visitors into signups also degraded. This is the hallmark of a **funnel problem** (e.g., a broken signup form, a bad deploy, a UX regression, or a pricing change).
-
-3. **No known business event is registered** — This makes it an **unexplained anomaly**, meaning it could be an unlogged deploy, an infrastructure issue, a third-party integration failure (e.g., email verification, OAuth), or a subtle UI bug that wasn't tracked as a formal event.
-
----
-
-### ✅ Recommended Next Steps
-
-- **Check deployment logs around March 7, 2026** for any unregistered backend/frontend changes.
-- **Audit the signup funnel** (form rendering, validation, email confirmation flows) for regressions introduced around that date.
-- **Review infrastructure/error logs** (5xx rates, latency spikes) for signs of a service degradation.
-- **Verify third-party integrations** (Stripe, SendGrid, Auth providers) for outages or breaking API changes.
-
----
-
-### 📈 Confidence Level: **High**
-
-The changepoint is statistically very strong (p ≈ 0.0), the cross-channel uniformity is unambiguous, and the simultaneous drop in both traffic *and* conversion rate makes a funnel/product cause the overwhelmingly likely explanation. The only uncertainty is the *specific* product/technical cause, which requires log-level investigation.",True,True,True
-scenario_10,spend_cut,paid,5,"['segment_comparison_tool', 'detect_changepoints', 'segment_comparison_tool', 'detect_changepoints', 'check_event_alignment']","The evidence is clear and consistent across all three tools. I have everything I need for a confident diagnosis.
+1. **Check Google Search Console / SEMrush** for impression and ranking drops around Feb 12 — this will confirm or rule out an algorithm update.
+2. **Audit organic attribution** — verify that a tagging or UTM change didn't accidentally misclassify organic traffic.
+3. **Cross-reference with Google algorithm update logs** (e.g., MozCast, SEMrush Sensor) for Feb 12, 2026.
+4. **Monitor paid channel closely** — the 50% paid budget cut on Feb 14 hasn't yet caused a significant signup impact but could become a compounding problem.",True,True,True
+scenario_07,conversion_bug,organic,12,"['segment_comparison_tool', 'detect_changepoints', 'detect_changepoints', 'detect_changepoints', 'detect_changepoints', 'detect_changepoints', 'detect_changepoints', 'detect_changepoints', 'detect_changepoints', 'segment_comparison_tool', 'check_event_alignment', 'check_event_alignment']","[{""tool"": ""segment_comparison_tool"", ""input"": {""split_date"": ""2025-02-01""}, ""output"": {""split_date"": ""2025-02-01"", ""signups_by_channel"": [{""channel"": ""organic"", ""before_mean"": null, ""after_mean"": null, ""pct_change"": null, ""p_value"": null, ""significant"": false, ""warning"": ""Insufficient data for a reliable comparison: 0 days before, 90 days after split_date. Need at least 5 days on each side \u2014 try a split_date closer to the middle of the data range.""}, {""channel"": ""paid"", ""before_mean"": null, ""after_mean"": null, ""pct_change"": null, ""p_value"": null, ""significant"": false, ""warning"": ""Insufficient data for a reliable comparison: 0 days before, 90 days after split_date. Need at least 5 days on each side \u2014 try a split_date closer to the middle of the data range.""}, {""channel"": ""referral"", ""before_mean"": null, ""after_mean"": null, ""pct_change"": null, ""p_value"": null, ""significant"": false, ""warning"": ""Insufficient data for a reliable comparison: 0 days before, 90 days after split_date. Need at least 5 days on each side \u2014 try a split_date closer to the middle of the data range.""}], ""conversion_by_channel"": [{""channel"": ""organic"", ""before_mean"": null, ""after_mean"": null, ""pct_change"": null, ""p_value"": null, ""significant"": false, ""warning"": ""Insufficient data for a reliable comparison: 0 days before, 90 days after split_date. Need at least 5 days on each side \u2014 try a split_date closer to the middle of the data range.""}, {""channel"": ""paid"", ""before_mean"": null, ""after_mean"": null, ""pct_change"": null, ""p_value"": null, ""significant"": false, ""warning"": ""Insufficient data for a reliable comparison: 0 days before, 90 days after split_date. Need at least 5 days on each side \u2014 try a split_date closer to the middle of the data range.""}, {""channel"": ""referral"", ""before_mean"": null, ""after_mean"": null, ""pct_change"": null, ""p_value"": null, ""significant"": false, ""warning"": ""Insufficient data for a reliable comparison: 0 days before, 90 days after split_date. Need at least 5 days on each side \u2014 try a split_date closer to the middle of the data range.""}], ""channels_with_signups_drop"": [], ""channels_with_conversion_drop"": [], ""interpretation"": ""No channel shows a significant drop in signups or conversion rate.""}}, {""tool"": ""detect_changepoints"", ""input"": {""metric_col"": ""signups"", ""channel"": null}, ""output"": {""channel_queried"": ""all channels combined"", ""metric"": ""signups"", ""detected_changepoint"": ""2026-02-21"", ""t_stat"": 4.732, ""p_value"": 0.0, ""significant"": ""True""}}, {""tool"": ""detect_changepoints"", ""input"": {""metric_col"": ""conversion_rate"", ""channel"": null}, ""output"": {""channel_queried"": ""all channels combined"", ""metric"": ""conversion_rate"", ""detected_changepoint"": ""2026-02-22"", ""t_stat"": 11.083, ""p_value"": 0.0, ""significant"": ""True""}}, {""tool"": ""detect_changepoints"", ""input"": {""metric_col"": ""signups"", ""channel"": ""organic""}, ""output"": {""channel_queried"": ""organic"", ""metric"": ""signups"", ""detected_changepoint"": ""2026-02-21"", ""t_stat"": 11.321, ""p_value"": 0.0, ""significant"": ""True""}}, {""tool"": ""detect_changepoints"", ""input"": {""metric_col"": ""signups"", ""channel"": ""paid""}, ""output"": {""channel_queried"": ""paid"", ""metric"": ""signups"", ""detected_changepoint"": ""2026-01-24"", ""t_stat"": 0.991, ""p_value"": 0.3284, ""significant"": ""False""}}, {""tool"": ""detect_changepoints"", ""input"": {""metric_col"": ""signups"", ""channel"": ""referral""}, ""output"": {""channel_queried"": ""referral"", ""metric"": ""signups"", ""detected_changepoint"": ""2026-01-12"", ""t_stat"": -1.823, ""p_value"": 0.0884, ""significant"": ""False""}}, {""tool"": ""detect_changepoints"", ""input"": {""metric_col"": ""conversion_rate"", ""channel"": ""organic""}, ""output"": {""channel_queried"": ""organic"", ""metric"": ""conversion_rate"", ""detected_changepoint"": ""2026-02-22"", ""t_stat"": 37.764, ""p_value"": 0.0, ""significant"": ""True""}}, {""tool"": ""detect_changepoints"", ""input"": {""metric_col"": ""conversion_rate"", ""channel"": ""paid""}, ""output"": {""channel_queried"": ""paid"", ""metric"": ""conversion_rate"", ""detected_changepoint"": ""2026-01-18"", ""t_stat"": 1.761, ""p_value"": 0.0891, ""significant"": ""False""}}, {""tool"": ""detect_changepoints"", ""input"": {""metric_col"": ""conversion_rate"", ""channel"": ""referral""}, ""output"": {""channel_queried"": ""referral"", ""metric"": ""conversion_rate"", ""detected_changepoint"": ""2026-03-13"", ""t_stat"": 1.177, ""p_value"": 0.249, ""significant"": ""False""}}, {""tool"": ""segment_comparison_tool"", ""input"": {""split_date"": ""2026-02-21""}, ""output"": {""split_date"": ""2026-02-21"", ""signups_by_channel"": [{""channel"": ""organic"", ""before_mean"": 161.9, ""after_mean"": 83.6, ""pct_change"": -48.4, ""p_value"": 0.0, ""significant"": true, ""warning"": null}, {""channel"": ""referral"", ""before_mean"": 73.9, ""after_mean"": 70.7, ""pct_change"": -4.4, ""p_value"": 0.451, ""significant"": false, ""warning"": null}, {""channel"": ""paid"", ""before_mean"": 134.3, ""after_mean"": 134.4, ""pct_change"": 0.1, ""p_value"": 0.9928, ""significant"": false, ""warning"": null}], ""conversion_by_channel"": [{""channel"": ""organic"", ""before_mean"": 0.0, ""after_mean"": 0.0, ""pct_change"": -47.3, ""p_value"": 0.0, ""significant"": true, ""warning"": null}, {""channel"": ""referral"", ""before_mean"": 0.1, ""after_mean"": 0.1, ""pct_change"": -0.3, ""p_value"": 0.8643, ""significant"": false, ""warning"": null}, {""channel"": ""paid"", ""before_mean"": 0.1, ""after_mean"": 0.1, ""pct_change"": 1.8, ""p_value"": 0.2781, ""significant"": false, ""warning"": null}], ""channels_with_signups_drop"": [""organic""], ""channels_with_conversion_drop"": [""organic""], ""interpretation"": ""Mixed signal: signups dropped in ['organic'], conversion dropped in ['organic'] \u2014 needs further investigation.""}}, {""tool"": ""check_event_alignment"", ""input"": {""candidate_date"": ""2026-02-21"", ""channel"": ""organic""}, ""output"": {""candidate_date"": ""2026-02-21"", ""channel_queried"": ""organic"", ""matching_events"": [{""date"": ""2026-02-20"", ""event_type"": ""deploy"", ""channel"": null, ""description"": ""Signup flow refactor deployed"", ""days_from_candidate"": -1}], ""interpretation"": ""Signup flow refactor deployed on 2026-02-20 (-1 days from candidate)""}}, {""tool"": ""check_event_alignment"", ""input"": {""candidate_date"": ""2026-02-22"", ""channel"": ""organic""}, ""output"": {""candidate_date"": ""2026-02-22"", ""channel_queried"": ""organic"", ""matching_events"": [{""date"": ""2026-02-20"", ""event_type"": ""deploy"", ""channel"": null, ""description"": ""Signup flow refactor deployed"", ""days_from_candidate"": -2}], ""interpretation"": ""Signup flow refactor deployed on 2026-02-20 (-2 days from candidate)""}}]","I now have a complete and highly consistent picture. Here is the full diagnosis:
 
 ---
 
 ## 🔍 Root Cause Diagnosis
 
-### Most Likely Root Cause: **Q1 Budget Freeze — Paid Channel Spend Cut ~50%**
+### Most Likely Root Cause: **Signup Flow Refactor Deploy (Feb 20, 2026) — Organic Channel Regression**
+
+---
+
+### 📋 Summary of Findings
+
+| Dimension | Finding |
+|---|---|
+| **Affected channel** | Organic only |
+| **Unaffected channels** | Paid, Referral (both statistically flat) |
+| **Signup drop (organic)** | -48.4% (before mean: 161.9/day → after mean: 83.6/day) |
+| **Conversion rate drop (organic)** | -47.3% (highly significant, p ≈ 0.0) |
+| **Changepoint — signups** | Feb 21, 2026 (t-stat: 11.3, p ≈ 0.0) |
+| **Changepoint — conversion rate** | Feb 22, 2026 (t-stat: 37.8, p ≈ 0.0) |
+| **Matching event** | **""Signup flow refactor deployed""** on Feb 20, 2026 |
+
+---
+
+### 🧠 Interpretation
+
+The evidence points to a **funnel regression introduced by the signup flow refactor** deployed on **February 20, 2026**:
+
+1. **It's a funnel problem, not a traffic problem.** Both signups *and* conversion rate dropped by ~48% simultaneously in the organic channel. If it were a traffic issue, signups would drop while conversion rate stayed stable.
+2. **It's channel-specific to organic.** Paid and referral channels show zero statistically significant change — ruling out a broad external cause (e.g., seasonal drop, market shift) and pointing to something affecting the organic user journey specifically.
+3. **The timing aligns perfectly.** The deploy happened on Feb 20; changepoints appear on Feb 21–22 (1–2 days lag), consistent with real-world data accumulation patterns.
+4. **The effect size is large and significant.** A t-stat of 37.8 on organic conversion rate is extremely strong — this is not noise.
+
+---
+
+### ✅ Confidence Level: **High**
+
+All three tools converge on the same conclusion: the signup flow refactor broke or degraded the organic signup funnel. The most likely scenario is that the refactored flow introduced a UX regression, broken form element, or routing bug that disproportionately affects organic visitors (e.g., a landing page or SEO entry point that was modified in the refactor).
+
+---
+
+### 🚨 Recommended Actions
+1. **Immediate:** Review the Feb 20 signup flow refactor diff for changes affecting organic landing pages or SEO entry points.
+2. **Short-term:** Consider rolling back or feature-flagging the refactor while the bug is investigated.
+3. **Validation:** Monitor organic conversion rate daily — a fix should restore it to ~the pre-Feb-21 baseline of ~161 signups/day.",True,True,True
+scenario_08,sitewide_bug,,6,"['segment_comparison_tool', 'segment_comparison_tool', 'detect_changepoints', 'segment_comparison_tool', 'detect_changepoints', 'check_event_alignment']","[{""tool"": ""segment_comparison_tool"", ""input"": {""split_date"": ""2025-02-01""}, ""output"": {""split_date"": ""2025-02-01"", ""signups_by_channel"": [{""channel"": ""organic"", ""before_mean"": null, ""after_mean"": null, ""pct_change"": null, ""p_value"": null, ""significant"": false, ""warning"": ""Insufficient data for a reliable comparison: 0 days before, 90 days after split_date. Need at least 5 days on each side \u2014 try a split_date closer to the middle of the data range.""}, {""channel"": ""paid"", ""before_mean"": null, ""after_mean"": null, ""pct_change"": null, ""p_value"": null, ""significant"": false, ""warning"": ""Insufficient data for a reliable comparison: 0 days before, 90 days after split_date. Need at least 5 days on each side \u2014 try a split_date closer to the middle of the data range.""}, {""channel"": ""referral"", ""before_mean"": null, ""after_mean"": null, ""pct_change"": null, ""p_value"": null, ""significant"": false, ""warning"": ""Insufficient data for a reliable comparison: 0 days before, 90 days after split_date. Need at least 5 days on each side \u2014 try a split_date closer to the middle of the data range.""}], ""conversion_by_channel"": [{""channel"": ""organic"", ""before_mean"": null, ""after_mean"": null, ""pct_change"": null, ""p_value"": null, ""significant"": false, ""warning"": ""Insufficient data for a reliable comparison: 0 days before, 90 days after split_date. Need at least 5 days on each side \u2014 try a split_date closer to the middle of the data range.""}, {""channel"": ""paid"", ""before_mean"": null, ""after_mean"": null, ""pct_change"": null, ""p_value"": null, ""significant"": false, ""warning"": ""Insufficient data for a reliable comparison: 0 days before, 90 days after split_date. Need at least 5 days on each side \u2014 try a split_date closer to the middle of the data range.""}, {""channel"": ""referral"", ""before_mean"": null, ""after_mean"": null, ""pct_change"": null, ""p_value"": null, ""significant"": false, ""warning"": ""Insufficient data for a reliable comparison: 0 days before, 90 days after split_date. Need at least 5 days on each side \u2014 try a split_date closer to the middle of the data range.""}], ""channels_with_signups_drop"": [], ""channels_with_conversion_drop"": [], ""interpretation"": ""No channel shows a significant drop in signups or conversion rate.""}}, {""tool"": ""segment_comparison_tool"", ""input"": {""split_date"": ""2025-02-15""}, ""output"": {""split_date"": ""2025-02-15"", ""signups_by_channel"": [{""channel"": ""organic"", ""before_mean"": null, ""after_mean"": null, ""pct_change"": null, ""p_value"": null, ""significant"": false, ""warning"": ""Insufficient data for a reliable comparison: 0 days before, 90 days after split_date. Need at least 5 days on each side \u2014 try a split_date closer to the middle of the data range.""}, {""channel"": ""paid"", ""before_mean"": null, ""after_mean"": null, ""pct_change"": null, ""p_value"": null, ""significant"": false, ""warning"": ""Insufficient data for a reliable comparison: 0 days before, 90 days after split_date. Need at least 5 days on each side \u2014 try a split_date closer to the middle of the data range.""}, {""channel"": ""referral"", ""before_mean"": null, ""after_mean"": null, ""pct_change"": null, ""p_value"": null, ""significant"": false, ""warning"": ""Insufficient data for a reliable comparison: 0 days before, 90 days after split_date. Need at least 5 days on each side \u2014 try a split_date closer to the middle of the data range.""}], ""conversion_by_channel"": [{""channel"": ""organic"", ""before_mean"": null, ""after_mean"": null, ""pct_change"": null, ""p_value"": null, ""significant"": false, ""warning"": ""Insufficient data for a reliable comparison: 0 days before, 90 days after split_date. Need at least 5 days on each side \u2014 try a split_date closer to the middle of the data range.""}, {""channel"": ""paid"", ""before_mean"": null, ""after_mean"": null, ""pct_change"": null, ""p_value"": null, ""significant"": false, ""warning"": ""Insufficient data for a reliable comparison: 0 days before, 90 days after split_date. Need at least 5 days on each side \u2014 try a split_date closer to the middle of the data range.""}, {""channel"": ""referral"", ""before_mean"": null, ""after_mean"": null, ""pct_change"": null, ""p_value"": null, ""significant"": false, ""warning"": ""Insufficient data for a reliable comparison: 0 days before, 90 days after split_date. Need at least 5 days on each side \u2014 try a split_date closer to the middle of the data range.""}], ""channels_with_signups_drop"": [], ""channels_with_conversion_drop"": [], ""interpretation"": ""No channel shows a significant drop in signups or conversion rate.""}}, {""tool"": ""detect_changepoints"", ""input"": {""metric_col"": ""signups"", ""channel"": null}, ""output"": {""channel_queried"": ""all channels combined"", ""metric"": ""signups"", ""detected_changepoint"": ""2026-02-07"", ""t_stat"": 11.422, ""p_value"": 0.0, ""significant"": ""True""}}, {""tool"": ""segment_comparison_tool"", ""input"": {""split_date"": ""2026-02-07""}, ""output"": {""split_date"": ""2026-02-07"", ""signups_by_channel"": [{""channel"": ""referral"", ""before_mean"": 76.1, ""after_mean"": 35.8, ""pct_change"": -52.9, ""p_value"": 0.0, ""significant"": true, ""warning"": null}, {""channel"": ""paid"", ""before_mean"": 136.8, ""after_mean"": 67.7, ""pct_change"": -50.5, ""p_value"": 0.0, ""significant"": true, ""warning"": null}, {""channel"": ""organic"", ""before_mean"": 166.5, ""after_mean"": 83.8, ""pct_change"": -49.7, ""p_value"": 0.0, ""significant"": true, ""warning"": null}], ""conversion_by_channel"": [{""channel"": ""referral"", ""before_mean"": 0.1, ""after_mean"": 0.0, ""pct_change"": -50.9, ""p_value"": 0.0, ""significant"": true, ""warning"": null}, {""channel"": ""paid"", ""before_mean"": 0.1, ""after_mean"": 0.0, ""pct_change"": -48.8, ""p_value"": 0.0, ""significant"": true, ""warning"": null}, {""channel"": ""organic"", ""before_mean"": 0.0, ""after_mean"": 0.0, ""pct_change"": -48.7, ""p_value"": 0.0, ""significant"": true, ""warning"": null}], ""channels_with_signups_drop"": [""referral"", ""paid"", ""organic""], ""channels_with_conversion_drop"": [""referral"", ""paid"", ""organic""], ""interpretation"": ""Conversion rate dropped across ALL channels \u2014 likely a sitewide funnel/product issue, not a traffic issue.""}}, {""tool"": ""detect_changepoints"", ""input"": {""metric_col"": ""conversion_rate"", ""channel"": null}, ""output"": {""channel_queried"": ""all channels combined"", ""metric"": ""conversion_rate"", ""detected_changepoint"": ""2026-02-08"", ""t_stat"": 64.931, ""p_value"": 0.0, ""significant"": ""True""}}, {""tool"": ""check_event_alignment"", ""input"": {""candidate_date"": ""2026-02-07"", ""channel"": null}, ""output"": {""candidate_date"": ""2026-02-07"", ""channel_queried"": null, ""matching_events"": [{""date"": ""2026-02-08"", ""event_type"": ""deploy"", ""channel"": null, ""description"": ""Payment processor migration deployed"", ""days_from_candidate"": 1}], ""interpretation"": ""Payment processor migration deployed on 2026-02-08 (+1 days from candidate)""}}]","I now have everything needed for a definitive diagnosis. Here is the full investigation summary:
+
+---
+
+## 🔍 Root Cause Diagnosis
+
+### Most Likely Root Cause: **Payment Processor Migration Deployed on 2026-02-08**
+
+---
+
+### 📊 Evidence Chain
+
+| Step | Tool Used | Finding |
+|---|---|---|
+| **1. Changepoint Detection (Signups)** | `detect_changepoints` | Highly significant break in signups on **2026-02-07** (t-stat: 11.4, p=0.0) |
+| **2. Changepoint Detection (Conversion Rate)** | `detect_changepoints` | Extremely significant break in conversion rate on **2026-02-08** (t-stat: 64.9, p=0.0) |
+| **3. Segment Comparison** | `segment_comparison_tool` | ~**50% drop** in both signups AND conversion rate across **all three channels** (organic, paid, referral) simultaneously — ruling out a channel-specific or traffic issue |
+| **4. Event Alignment** | `check_event_alignment` | A **payment processor migration** was deployed on **2026-02-08**, aligning within 1 day of both detected changepoints |
+
+---
+
+### 🧠 Interpretation
+
+- **It's a funnel problem, not a traffic problem.** Traffic (visitors) arriving via all three channels remained relatively stable, but conversion rate collapsed by ~49–51% across every channel simultaneously. This rules out any marketing, SEO, or referral partner explanation.
+- **The cross-channel uniformity is the key signal.** When organic, paid, and referral all degrade by the same magnitude at the same time, the cause must be sitewide — something in the product or infrastructure.
+- **The payment processor migration is the smoking gun.** It was deployed within 1 day of both changepoints, and a broken or degraded checkout/payment flow would directly suppress signups at the final conversion step without affecting upstream traffic.
+
+---
+
+### ✅ Confidence Level: **HIGH**
+
+All three diagnostic signals — timing, pattern (sitewide, funnel-only), and event alignment — converge on the same cause. The t-statistic of 64.9 on the conversion rate changepoint is exceptionally strong, leaving very little room for an alternative explanation.
+
+---
+
+### 🛠️ Recommended Actions
+1. **Audit the payment processor migration** for bugs, broken API endpoints, or misconfigured error handling.
+2. **Check payment failure/error logs** starting Feb 8 for spike in failures or timeouts.
+3. **A/B test or roll back** the migration in a staging environment to confirm recovery in conversion rate.
+4. **Monitor recovery** — if the migration is fixed, conversion rates should return to the ~0.1 pre-event baseline.",True,True,True
+scenario_09,pricing_change,,16,"['segment_comparison_tool', 'segment_comparison_tool', 'detect_changepoints', 'detect_changepoints', 'detect_changepoints', 'detect_changepoints', 'detect_changepoints', 'detect_changepoints', 'detect_changepoints', 'detect_changepoints', 'check_event_alignment', 'check_event_alignment', 'segment_comparison_tool', 'check_event_alignment', 'check_event_alignment', 'check_event_alignment']","[{""tool"": ""segment_comparison_tool"", ""input"": {""split_date"": ""2024-02-01""}, ""output"": {""split_date"": ""2024-02-01"", ""signups_by_channel"": [{""channel"": ""organic"", ""before_mean"": null, ""after_mean"": null, ""pct_change"": null, ""p_value"": null, ""significant"": false, ""warning"": ""Insufficient data for a reliable comparison: 0 days before, 90 days after split_date. Need at least 5 days on each side \u2014 try a split_date closer to the middle of the data range.""}, {""channel"": ""paid"", ""before_mean"": null, ""after_mean"": null, ""pct_change"": null, ""p_value"": null, ""significant"": false, ""warning"": ""Insufficient data for a reliable comparison: 0 days before, 90 days after split_date. Need at least 5 days on each side \u2014 try a split_date closer to the middle of the data range.""}, {""channel"": ""referral"", ""before_mean"": null, ""after_mean"": null, ""pct_change"": null, ""p_value"": null, ""significant"": false, ""warning"": ""Insufficient data for a reliable comparison: 0 days before, 90 days after split_date. Need at least 5 days on each side \u2014 try a split_date closer to the middle of the data range.""}], ""conversion_by_channel"": [{""channel"": ""organic"", ""before_mean"": null, ""after_mean"": null, ""pct_change"": null, ""p_value"": null, ""significant"": false, ""warning"": ""Insufficient data for a reliable comparison: 0 days before, 90 days after split_date. Need at least 5 days on each side \u2014 try a split_date closer to the middle of the data range.""}, {""channel"": ""paid"", ""before_mean"": null, ""after_mean"": null, ""pct_change"": null, ""p_value"": null, ""significant"": false, ""warning"": ""Insufficient data for a reliable comparison: 0 days before, 90 days after split_date. Need at least 5 days on each side \u2014 try a split_date closer to the middle of the data range.""}, {""channel"": ""referral"", ""before_mean"": null, ""after_mean"": null, ""pct_change"": null, ""p_value"": null, ""significant"": false, ""warning"": ""Insufficient data for a reliable comparison: 0 days before, 90 days after split_date. Need at least 5 days on each side \u2014 try a split_date closer to the middle of the data range.""}], ""channels_with_signups_drop"": [], ""channels_with_conversion_drop"": [], ""interpretation"": ""No channel shows a significant drop in signups or conversion rate.""}}, {""tool"": ""segment_comparison_tool"", ""input"": {""split_date"": ""2024-02-15""}, ""output"": {""split_date"": ""2024-02-15"", ""signups_by_channel"": [{""channel"": ""organic"", ""before_mean"": null, ""after_mean"": null, ""pct_change"": null, ""p_value"": null, ""significant"": false, ""warning"": ""Insufficient data for a reliable comparison: 0 days before, 90 days after split_date. Need at least 5 days on each side \u2014 try a split_date closer to the middle of the data range.""}, {""channel"": ""paid"", ""before_mean"": null, ""after_mean"": null, ""pct_change"": null, ""p_value"": null, ""significant"": false, ""warning"": ""Insufficient data for a reliable comparison: 0 days before, 90 days after split_date. Need at least 5 days on each side \u2014 try a split_date closer to the middle of the data range.""}, {""channel"": ""referral"", ""before_mean"": null, ""after_mean"": null, ""pct_change"": null, ""p_value"": null, ""significant"": false, ""warning"": ""Insufficient data for a reliable comparison: 0 days before, 90 days after split_date. Need at least 5 days on each side \u2014 try a split_date closer to the middle of the data range.""}], ""conversion_by_channel"": [{""channel"": ""organic"", ""before_mean"": null, ""after_mean"": null, ""pct_change"": null, ""p_value"": null, ""significant"": false, ""warning"": ""Insufficient data for a reliable comparison: 0 days before, 90 days after split_date. Need at least 5 days on each side \u2014 try a split_date closer to the middle of the data range.""}, {""channel"": ""paid"", ""before_mean"": null, ""after_mean"": null, ""pct_change"": null, ""p_value"": null, ""significant"": false, ""warning"": ""Insufficient data for a reliable comparison: 0 days before, 90 days after split_date. Need at least 5 days on each side \u2014 try a split_date closer to the middle of the data range.""}, {""channel"": ""referral"", ""before_mean"": null, ""after_mean"": null, ""pct_change"": null, ""p_value"": null, ""significant"": false, ""warning"": ""Insufficient data for a reliable comparison: 0 days before, 90 days after split_date. Need at least 5 days on each side \u2014 try a split_date closer to the middle of the data range.""}], ""channels_with_signups_drop"": [], ""channels_with_conversion_drop"": [], ""interpretation"": ""No channel shows a significant drop in signups or conversion rate.""}}, {""tool"": ""detect_changepoints"", ""input"": {""metric_col"": ""signups"", ""channel"": null}, ""output"": {""channel_queried"": ""all channels combined"", ""metric"": ""signups"", ""detected_changepoint"": ""2026-03-07"", ""t_stat"": 6.299, ""p_value"": 0.0, ""significant"": ""True""}}, {""tool"": ""detect_changepoints"", ""input"": {""metric_col"": ""conversion_rate"", ""channel"": null}, ""output"": {""channel_queried"": ""all channels combined"", ""metric"": ""conversion_rate"", ""detected_changepoint"": ""2026-03-08"", ""t_stat"": 23.468, ""p_value"": 0.0, ""significant"": ""True""}}, {""tool"": ""detect_changepoints"", ""input"": {""metric_col"": ""signups"", ""channel"": ""organic""}, ""output"": {""channel_queried"": ""organic"", ""metric"": ""signups"", ""detected_changepoint"": ""2026-03-07"", ""t_stat"": 6.112, ""p_value"": 0.0, ""significant"": ""True""}}, {""tool"": ""detect_changepoints"", ""input"": {""metric_col"": ""signups"", ""channel"": ""paid""}, ""output"": {""channel_queried"": ""paid"", ""metric"": ""signups"", ""detected_changepoint"": ""2026-03-07"", ""t_stat"": 6.011, ""p_value"": 0.0, ""significant"": ""True""}}, {""tool"": ""detect_changepoints"", ""input"": {""metric_col"": ""signups"", ""channel"": ""referral""}, ""output"": {""channel_queried"": ""referral"", ""metric"": ""signups"", ""detected_changepoint"": ""2026-03-07"", ""t_stat"": 5.308, ""p_value"": 0.0, ""significant"": ""True""}}, {""tool"": ""detect_changepoints"", ""input"": {""metric_col"": ""conversion_rate"", ""channel"": ""organic""}, ""output"": {""channel_queried"": ""organic"", ""metric"": ""conversion_rate"", ""detected_changepoint"": ""2026-03-09"", ""t_stat"": 16.323, ""p_value"": 0.0, ""significant"": ""True""}}, {""tool"": ""detect_changepoints"", ""input"": {""metric_col"": ""conversion_rate"", ""channel"": ""paid""}, ""output"": {""channel_queried"": ""paid"", ""metric"": ""conversion_rate"", ""detected_changepoint"": ""2026-03-07"", ""t_stat"": 19.989, ""p_value"": 0.0, ""significant"": ""True""}}, {""tool"": ""detect_changepoints"", ""input"": {""metric_col"": ""conversion_rate"", ""channel"": ""referral""}, ""output"": {""channel_queried"": ""referral"", ""metric"": ""conversion_rate"", ""detected_changepoint"": ""2026-03-08"", ""t_stat"": 16.7, ""p_value"": 0.0, ""significant"": ""True""}}, {""tool"": ""check_event_alignment"", ""input"": {""candidate_date"": ""2026-03-07"", ""channel"": null}, ""output"": {""candidate_date"": ""2026-03-07"", ""channel_queried"": null, ""matching_events"": [], ""interpretation"": ""No known event found within 2 days of 2026-03-07.""}}, {""tool"": ""check_event_alignment"", ""input"": {""candidate_date"": ""2026-03-08"", ""channel"": null}, ""output"": {""candidate_date"": ""2026-03-08"", ""channel_queried"": null, ""matching_events"": [], ""interpretation"": ""No known event found within 2 days of 2026-03-08.""}}, {""tool"": ""segment_comparison_tool"", ""input"": {""split_date"": ""2026-03-07""}, ""output"": {""split_date"": ""2026-03-07"", ""signups_by_channel"": [{""channel"": ""organic"", ""before_mean"": 164.2, ""after_mean"": 114.6, ""pct_change"": -30.2, ""p_value"": 0.0, ""significant"": true, ""warning"": null}, {""channel"": ""paid"", ""before_mean"": 135.5, ""after_mean"": 95.2, ""pct_change"": -29.8, ""p_value"": 0.0, ""significant"": true, ""warning"": null}, {""channel"": ""referral"", ""before_mean"": 71.0, ""after_mean"": 51.8, ""pct_change"": -27.1, ""p_value"": 0.0, ""significant"": true, ""warning"": null}], ""conversion_by_channel"": [{""channel"": ""referral"", ""before_mean"": 0.1, ""after_mean"": 0.1, ""pct_change"": -28.3, ""p_value"": 0.0, ""significant"": true, ""warning"": null}, {""channel"": ""paid"", ""before_mean"": 0.1, ""after_mean"": 0.0, ""pct_change"": -27.6, ""p_value"": 0.0, ""significant"": true, ""warning"": null}, {""channel"": ""organic"", ""before_mean"": 0.0, ""after_mean"": 0.0, ""pct_change"": -27.0, ""p_value"": 0.0, ""significant"": true, ""warning"": null}], ""channels_with_signups_drop"": [""organic"", ""paid"", ""referral""], ""channels_with_conversion_drop"": [""referral"", ""paid"", ""organic""], ""interpretation"": ""Conversion rate dropped across ALL channels \u2014 likely a sitewide funnel/product issue, not a traffic issue.""}}, {""tool"": ""check_event_alignment"", ""input"": {""candidate_date"": ""2026-03-07"", ""channel"": ""organic""}, ""output"": {""candidate_date"": ""2026-03-07"", ""channel_queried"": ""organic"", ""matching_events"": [], ""interpretation"": ""No known event found within 2 days of 2026-03-07.""}}, {""tool"": ""check_event_alignment"", ""input"": {""candidate_date"": ""2026-03-07"", ""channel"": ""paid""}, ""output"": {""candidate_date"": ""2026-03-07"", ""channel_queried"": ""paid"", ""matching_events"": [], ""interpretation"": ""No known event found within 2 days of 2026-03-07.""}}, {""tool"": ""check_event_alignment"", ""input"": {""candidate_date"": ""2026-03-07"", ""channel"": ""referral""}, ""output"": {""candidate_date"": ""2026-03-07"", ""channel_queried"": ""referral"", ""matching_events"": [], ""interpretation"": ""No known event found within 2 days of 2026-03-07.""}}]","I now have a comprehensive picture. Here is the full diagnosis:
+
+---
+
+## 🔍 Root Cause Diagnosis
+
+### ❗ Primary Finding: Sitewide Funnel/Product Degradation Starting March 7, 2026
+
+Despite the anomaly being *reported* as a February drop in signups, the data tells a more precise and serious story.
+
+---
+
+### 📊 Evidence Summary
+
+| Evidence | Detail |
+|---|---|
+| **True changepoint date** | **March 7, 2026** (not February) — detected with p=0.0 (t-stat: 6.3) across all channels |
+| **Channels affected** | **All three** — organic (−30.2%), paid (−29.8%), referral (−27.1%) in signups |
+| **Conversion rate drop** | **All three** — organic (−27%), paid (−27.6%), referral (−28.3%) |
+| **Traffic vs. funnel** | **Both are down**, but the tool's own interpretation flags this as a **sitewide funnel/product issue** |
+| **Known business events** | **None found** — no marketing changes, deploys, or pricing events logged near March 7 |
+
+---
+
+### 🧩 Interpretation
+
+1. **It's not a traffic problem alone.** If it were a traffic/marketing issue, we'd expect signups to drop in one or two channels while conversion rates held steady. Instead, **conversion rate dropped ~27–28% across all three channels simultaneously** — a hallmark of a sitewide funnel issue.
+
+2. **It's not channel-specific.** All three channels (organic, paid, referral) broke at almost exactly the same date (March 7–9), which rules out any channel-specific explanation (e.g., a bad ad campaign or a referral partner going dark).
+
+3. **It is unexplained by known events.** No deploy, pricing change, or marketing spend change is recorded near this date — making this an **unlogged or undiscovered incident** that needs manual investigation.
+
+---
+
+### 🏁 Final Diagnosis
+
+| Attribute | Value |
+|---|---|
+| **Most Likely Root Cause** | Unrecorded sitewide product or funnel degradation (e.g., a broken signup flow, a UX regression, a payment/form bug, or a backend issue) deployed or triggered around **March 7, 2026** |
+| **Confidence Level** | **Medium-High** |
+| **Confidence Caveat** | High confidence that it's a *sitewide funnel issue*; medium confidence on the specific mechanism, since no known event was found to explain it |
+
+---
+
+### ✅ Recommended Next Steps
+
+1. **Audit deploys and infrastructure changes** around March 7 — even if not officially logged, something changed.
+2. **Check the signup funnel step-by-step** (form loads, submission errors, email confirmation flows) for regressions that may have been introduced around that date.
+3. **Review session recordings or error logs** from March 7 onward for signs of UI/UX or backend failures.
+4. **Clarify the reporting period** — the anomaly was reported as ""February,"" but the data clearly shows the break in early March. Confirm with stakeholders whether this is a data labeling issue or a reporting lag.",True,True,True
+scenario_10,spend_cut,paid,9,"['segment_comparison_tool', 'segment_comparison_tool', 'detect_changepoints', 'detect_changepoints', 'segment_comparison_tool', 'detect_changepoints', 'detect_changepoints', 'detect_changepoints', 'check_event_alignment']","[{""tool"": ""segment_comparison_tool"", ""input"": {""split_date"": ""2024-02-01""}, ""output"": {""split_date"": ""2024-02-01"", ""signups_by_channel"": [{""channel"": ""organic"", ""before_mean"": null, ""after_mean"": null, ""pct_change"": null, ""p_value"": null, ""significant"": false, ""warning"": ""Insufficient data for a reliable comparison: 0 days before, 90 days after split_date. Need at least 5 days on each side \u2014 try a split_date closer to the middle of the data range.""}, {""channel"": ""paid"", ""before_mean"": null, ""after_mean"": null, ""pct_change"": null, ""p_value"": null, ""significant"": false, ""warning"": ""Insufficient data for a reliable comparison: 0 days before, 90 days after split_date. Need at least 5 days on each side \u2014 try a split_date closer to the middle of the data range.""}, {""channel"": ""referral"", ""before_mean"": null, ""after_mean"": null, ""pct_change"": null, ""p_value"": null, ""significant"": false, ""warning"": ""Insufficient data for a reliable comparison: 0 days before, 90 days after split_date. Need at least 5 days on each side \u2014 try a split_date closer to the middle of the data range.""}], ""conversion_by_channel"": [{""channel"": ""organic"", ""before_mean"": null, ""after_mean"": null, ""pct_change"": null, ""p_value"": null, ""significant"": false, ""warning"": ""Insufficient data for a reliable comparison: 0 days before, 90 days after split_date. Need at least 5 days on each side \u2014 try a split_date closer to the middle of the data range.""}, {""channel"": ""paid"", ""before_mean"": null, ""after_mean"": null, ""pct_change"": null, ""p_value"": null, ""significant"": false, ""warning"": ""Insufficient data for a reliable comparison: 0 days before, 90 days after split_date. Need at least 5 days on each side \u2014 try a split_date closer to the middle of the data range.""}, {""channel"": ""referral"", ""before_mean"": null, ""after_mean"": null, ""pct_change"": null, ""p_value"": null, ""significant"": false, ""warning"": ""Insufficient data for a reliable comparison: 0 days before, 90 days after split_date. Need at least 5 days on each side \u2014 try a split_date closer to the middle of the data range.""}], ""channels_with_signups_drop"": [], ""channels_with_conversion_drop"": [], ""interpretation"": ""No channel shows a significant drop in signups or conversion rate.""}}, {""tool"": ""segment_comparison_tool"", ""input"": {""split_date"": ""2024-02-15""}, ""output"": {""split_date"": ""2024-02-15"", ""signups_by_channel"": [{""channel"": ""organic"", ""before_mean"": null, ""after_mean"": null, ""pct_change"": null, ""p_value"": null, ""significant"": false, ""warning"": ""Insufficient data for a reliable comparison: 0 days before, 90 days after split_date. Need at least 5 days on each side \u2014 try a split_date closer to the middle of the data range.""}, {""channel"": ""paid"", ""before_mean"": null, ""after_mean"": null, ""pct_change"": null, ""p_value"": null, ""significant"": false, ""warning"": ""Insufficient data for a reliable comparison: 0 days before, 90 days after split_date. Need at least 5 days on each side \u2014 try a split_date closer to the middle of the data range.""}, {""channel"": ""referral"", ""before_mean"": null, ""after_mean"": null, ""pct_change"": null, ""p_value"": null, ""significant"": false, ""warning"": ""Insufficient data for a reliable comparison: 0 days before, 90 days after split_date. Need at least 5 days on each side \u2014 try a split_date closer to the middle of the data range.""}], ""conversion_by_channel"": [{""channel"": ""organic"", ""before_mean"": null, ""after_mean"": null, ""pct_change"": null, ""p_value"": null, ""significant"": false, ""warning"": ""Insufficient data for a reliable comparison: 0 days before, 90 days after split_date. Need at least 5 days on each side \u2014 try a split_date closer to the middle of the data range.""}, {""channel"": ""paid"", ""before_mean"": null, ""after_mean"": null, ""pct_change"": null, ""p_value"": null, ""significant"": false, ""warning"": ""Insufficient data for a reliable comparison: 0 days before, 90 days after split_date. Need at least 5 days on each side \u2014 try a split_date closer to the middle of the data range.""}, {""channel"": ""referral"", ""before_mean"": null, ""after_mean"": null, ""pct_change"": null, ""p_value"": null, ""significant"": false, ""warning"": ""Insufficient data for a reliable comparison: 0 days before, 90 days after split_date. Need at least 5 days on each side \u2014 try a split_date closer to the middle of the data range.""}], ""channels_with_signups_drop"": [], ""channels_with_conversion_drop"": [], ""interpretation"": ""No channel shows a significant drop in signups or conversion rate.""}}, {""tool"": ""detect_changepoints"", ""input"": {""metric_col"": ""signups"", ""channel"": null}, ""output"": {""channel_queried"": ""all channels combined"", ""metric"": ""signups"", ""detected_changepoint"": ""2026-02-14"", ""t_stat"": 3.861, ""p_value"": 0.0002, ""significant"": ""True""}}, {""tool"": ""detect_changepoints"", ""input"": {""metric_col"": ""conversion_rate"", ""channel"": null}, ""output"": {""channel_queried"": ""all channels combined"", ""metric"": ""conversion_rate"", ""detected_changepoint"": ""2026-03-06"", ""t_stat"": 2.017, ""p_value"": 0.0473, ""significant"": ""True""}}, {""tool"": ""segment_comparison_tool"", ""input"": {""split_date"": ""2026-02-14""}, ""output"": {""split_date"": ""2026-02-14"", ""signups_by_channel"": [{""channel"": ""paid"", ""before_mean"": 131.5, ""after_mean"": 65.4, ""pct_change"": -50.3, ""p_value"": 0.0, ""significant"": true, ""warning"": null}, {""channel"": ""referral"", ""before_mean"": 75.4, ""after_mean"": 70.9, ""pct_change"": -6.0, ""p_value"": 0.3035, ""significant"": false, ""warning"": null}, {""channel"": ""organic"", ""before_mean"": 159.7, ""after_mean"": 163.2, ""pct_change"": 2.2, ""p_value"": 0.6914, ""significant"": false, ""warning"": null}], ""conversion_by_channel"": [{""channel"": ""referral"", ""before_mean"": 0.1, ""after_mean"": 0.1, ""pct_change"": -1.8, ""p_value"": 0.3158, ""significant"": false, ""warning"": null}, {""channel"": ""paid"", ""before_mean"": 0.1, ""after_mean"": 0.1, ""pct_change"": -0.1, ""p_value"": 0.9486, ""significant"": false, ""warning"": null}, {""channel"": ""organic"", ""before_mean"": 0.0, ""after_mean"": 0.0, ""pct_change"": 1.5, ""p_value"": 0.3972, ""significant"": false, ""warning"": null}], ""channels_with_signups_drop"": [""paid""], ""channels_with_conversion_drop"": [], ""interpretation"": ""Signups dropped in ['paid'] with no conversion-rate change \u2014 likely a traffic-volume issue isolated to ['paid'].""}}, {""tool"": ""detect_changepoints"", ""input"": {""metric_col"": ""signups"", ""channel"": ""organic""}, ""output"": {""channel_queried"": ""organic"", ""metric"": ""signups"", ""detected_changepoint"": ""2026-01-19"", ""t_stat"": -1.277, ""p_value"": 0.2125, ""significant"": ""False""}}, {""tool"": ""detect_changepoints"", ""input"": {""metric_col"": ""signups"", ""channel"": ""paid""}, ""output"": {""channel_queried"": ""paid"", ""metric"": ""signups"", ""detected_changepoint"": ""2026-02-14"", ""t_stat"": 11.38, ""p_value"": 0.0, ""significant"": ""True""}}, {""tool"": ""detect_changepoints"", ""input"": {""metric_col"": ""signups"", ""channel"": ""referral""}, ""output"": {""channel_queried"": ""referral"", ""metric"": ""signups"", ""detected_changepoint"": ""2026-03-14"", ""t_stat"": 1.744, ""p_value"": 0.0933, ""significant"": ""False""}}, {""tool"": ""check_event_alignment"", ""input"": {""candidate_date"": ""2026-02-14"", ""channel"": null}, ""output"": {""candidate_date"": ""2026-02-14"", ""channel_queried"": null, ""matching_events"": [{""date"": ""2026-02-14"", ""event_type"": ""spend_change"", ""channel"": ""paid"", ""description"": ""Q1 budget freeze \u2014 paid spend cut ~50%"", ""days_from_candidate"": 0}], ""interpretation"": ""Q1 budget freeze \u2014 paid spend cut ~50% on 2026-02-14 (+0 days from candidate)""}}]","I now have a complete, consistent, and unambiguous picture. Here is the full diagnosis:
+
+---
+
+## 🔍 Root Cause Diagnosis
+
+### **Root Cause: Q1 Budget Freeze — Paid Channel Spend Cut ~50% on February 14, 2026**
+
+---
+
+### 📊 Evidence Summary
+
+| Evidence | Finding |
+|---|---|
+| **Channel isolation** | Only the **paid channel** shows a statistically significant signup drop (-50.3%, p≈0.0). Organic (+2.2%) and referral (-6.0%) are essentially flat and not significant. |
+| **Conversion rate** | No channel shows a significant conversion rate change. The funnel is healthy — it's purely a **traffic volume problem**, not a funnel/product problem. |
+| **Changepoint — Paid signups** | Extremely sharp break on **Feb 14, 2026** (t=11.38, p≈0.0) — the strongest possible statistical signal. |
+| **Changepoint — Organic/Referral** | No significant changepoints found in either channel, confirming they are unaffected. |
+| **Business event alignment** | A **""Q1 budget freeze""** event is logged exactly on Feb 14, with paid spend cut by ~50% — a precise, same-day match to the changepoint. |
+
+---
+
+### 🧭 Conclusion
+
+> **The signup drop is entirely explained by a deliberate ~50% reduction in paid advertising spend enacted on February 14, 2026 as part of a Q1 budget freeze.** This directly caused paid channel signups to fall by ~50.3%. Organic and referral channels were unaffected, and the conversion funnel shows no degradation — users who do arrive are converting at the same rate as before.
 
 **Confidence Level: 🟢 HIGH**
+- The changepoint is statistically overwhelming (t=11.38, p≈0)
+- The channel isolation is clean and unambiguous
+- The business event matches the date exactly, with a magnitude (~50% spend cut) that directly corresponds to the ~50.3% signup drop
+- No competing explanations exist in the data
 
 ---
 
-### Evidence Summary
-
-| Tool | Finding |
-|---|---|
-| **Changepoint Detection (signups)** | A statistically significant break in signups was detected on **2026-02-14** (t-stat: 3.86, p = 0.0002) |
-| **Segment Comparison** | Paid channel signups dropped **-50.3%** (131.5/day → 65.4/day) — statistically significant (p ≈ 0.0). Organic (+2.2%) and referral (-6.0%) showed **no significant change** |
-| **Conversion Rate** | No significant drop in conversion rate across any channel — this rules out a funnel/UX problem |
-| **Event Alignment** | 2026-02-14 aligns **exactly** with a logged business event: *""Q1 budget freeze — paid spend cut ~50%""* |
-
----
-
-### Interpretation
-
-This is a **traffic-volume problem, not a funnel problem**:
-
-- ✅ **Where:** Isolated entirely to the **paid channel** — organic and referral are healthy and stable.
-- ✅ **When:** Began precisely on **February 14, 2026**.
-- ✅ **Why:** A deliberate **~50% cut in paid marketing spend** due to a Q1 budget freeze directly halved paid-driven traffic and signups.
-- ✅ **Not a conversion issue:** Conversion rates are flat across all channels, meaning the product/funnel itself is working fine.
-
----
-
-### Recommended Actions
-
-1. **If the signup drop is unacceptable:** Revisit the Q1 budget freeze decision and evaluate the cost-per-signup trade-off for the paid channel.
-2. **If the budget freeze is intentional:** Update stakeholder expectations — this is a planned, explainable drop, not an organic problem.
-3. **Monitor organic and referral:** Consider whether growth in these channels can offset the paid reduction long-term.",True,True,True
+### ✅ Recommended Actions
+1. **No product or funnel action needed** — the signup drop is not caused by a technical or UX issue.
+2. **Escalate to marketing/finance** if the signup decline is unacceptable — the lever is simply restoring paid spend.
+3. **Monitor organic and referral** channels to ensure they continue holding steady during the budget freeze.",True,True,True

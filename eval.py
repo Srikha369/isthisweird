@@ -68,6 +68,7 @@ def run_eval(anomaly_description_template="Signups appear to have dropped notice
             "true_channel": ground_truth["affected_channel"],
             "num_tool_calls": outcome["num_tool_calls"],
             "tools_used": [c["tool"] for c in outcome["tool_calls_made"]],
+            "tool_call_details": json.dumps(outcome["tool_calls_made"], default=str), 
             "diagnosis": outcome["diagnosis"],
             **grade,
         })

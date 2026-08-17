@@ -4,24 +4,39 @@ from scipy import stats
 
 
 #compare segments of data before and after a given date to see if there is a significant change in the metric of interest (e.g. signups, conversion rate)
-def compare_segments(df: pd.DataFrame, split_date: str, metric_col: str = "signups"):
-
+def compare_segments(df: pd.DataFrame, split_date: str, metric_col: str = "signups",
+                      min_sample_days: int = 5):
     df = df.copy()
-    df["date"] = pd.to_datetime(df["date"]) 
-    split = pd.to_datetime(split_date) #data split date to compare segments before and after 
+    df["date"] = pd.to_datetime(df["date"])
+    split = pd.to_datetime(split_date)
 
     results = []
     for ch in df["channel"].unique():
-        sub = df[df["channel"] == ch] #makes a independent dataframe for each channel 
+        sub = df[df["channel"] == ch]
         before = sub[sub["date"] < split]
         after = sub[sub["date"] >= split]
 
-        before_mean = before[metric_col].mean()  
+        # Guard against too-small samples instead of silently returning NaN
+        if len(before) < min_sample_days or len(after) < min_sample_days:
+            results.append({
+                "channel": ch,
+                "before_mean": None,
+                "after_mean": None,
+                "pct_change": None,
+                "p_value": None,
+                "significant": False,
+                "warning": (
+                    f"Insufficient data for a reliable comparison: {len(before)} days "
+                    f"before, {len(after)} days after split_date. Need at least "
+                    f"{min_sample_days} days on each side — try a split_date closer "
+                    f"to the middle of the data range."
+                ),
+            })
+            continue
+
+        before_mean = before[metric_col].mean()
         after_mean = after[metric_col].mean()
-        pct_change = (after_mean - before_mean) / before_mean if before_mean != 0 else np.nan #percent change 
-
-        # Two-sample t-test: is the after-period mean statistically significantly different from the before-period mean for this channel?
-
+        pct_change = (after_mean - before_mean) / before_mean if before_mean != 0 else np.nan
         t_stat, p_value = stats.ttest_ind(before[metric_col], after[metric_col], equal_var=False)
 
         results.append({
@@ -31,6 +46,7 @@ def compare_segments(df: pd.DataFrame, split_date: str, metric_col: str = "signu
             "pct_change": round(pct_change * 100, 1),
             "p_value": round(p_value, 4),
             "significant": p_value < 0.05,
+            "warning": None,
         })
 
     return pd.DataFrame(results).sort_values("pct_change")

@@ -1,6 +1,10 @@
+from dotenv import load_dotenv
+load_dotenv()
+
 import anthropic
 import json
 import stat_tools
+
 
 client = anthropic.Anthropic()  # assumes ANTHROPIC_API_KEY is set as an env var
 MODEL = "claude-sonnet-4-6"
@@ -121,12 +125,13 @@ def investigate(df, anomaly_description: str, max_tool_calls: int = MAX_TOOL_CAL
             if block.type == "tool_use":
                 tool_name = block.name
                 tool_input = block.input
-                tool_call_log.append({"tool": tool_name, "input": tool_input})
-
+                
                 try:
                     result = TOOL_FUNCTIONS[tool_name](df, **tool_input)
                 except Exception as e:
                     result = {"error": str(e)}
+
+                tool_call_log.append({"tool": tool_name, "input": tool_input, "output": result})
 
                 tool_results.append({
                     "type": "tool_result",
@@ -168,4 +173,3 @@ if __name__ == "__main__":
     for call in result["tool_calls_made"]:
         print(" -", call["tool"], call["input"])
 
-        
