@@ -1,27 +1,24 @@
 
 # Is This Weird?
 
-An autonomous agent that diagnoses the root cause of KPI anomalies — 
-built to automate the manual investigation work data teams do every 
+An autonomous agent that diagnoses the root cause of KPI anomalies. Automates the manual investigation work data teams do every 
 time a dashboard metric moves unexpectedly.
 
 ## The problem
 
-Every data-driven team eventually hits the same moment: a metric drops 
-unexpectedly on a dashboard, and someone has to manually dig through 
-segments, timing, and recent changes to figure out why. This is slow, 
-repetitive, and follows a fairly predictable investigative pattern — 
-which makes it a good candidate for automation.
-
-This project builds an agent that performs that investigation 
-autonomously: given an anomalous metric, it forms hypotheses, tests 
-each one using real statistical methods (not LLM guessing), and 
+Everytime a metric drops unexpectedly on a dashboard, without an agent, 
+someone has to manually dig through segments, timing, and recent changes
+ to figure out why. This investigative pattern is fairly predictable, 
+ allowing us to explore how advanced automation can get.  
+ This project builds an agent that performs that investigation 
+autonomously. Given an anomalous metric, it forms hypotheses, tests 
+each one using real statistical methods, and 
 produces a confidence-rated diagnosis with supporting evidence.
 
 ## How it works
 
 Given an anomaly, the agent runs an investigation loop (up to 5 tool 
-calls) using three statistical tools:
+calls) using three statistical tools. 
 
 1. **Segment comparison** — Welch's t-test comparing each channel's 
    signups and conversion rate before vs. after a candidate date, to 
@@ -37,15 +34,11 @@ calls) using three statistical tools:
    a pricing update), to distinguish an anomaly with a known internal 
    cause from a genuinely unexplained one.
 
-The LLM (Claude) orchestrates these three tools — deciding which to 
-call, in what order, and when it has enough evidence to conclude — 
-while the actual statistics are computed deterministically in Python, 
-not inferred by the model. This keeps the numbers trustworthy while 
-letting the model do what it's good at: reasoning about which 
-evidence to gather next and synthesizing it into a diagnosis.
+The LLM (Claude) decides which to call, in what order, 
+and when it has enough evidence to conclude. Meanwhile,  
+the actual statistics are computed deterministically in Python, instead of being inferred by the model. 
 
-A FastAPI wrapper exposes the agent as a `POST /investigate` endpoint, 
-so it can be called as a service rather than only run as a script.
+So it can be called as a service, A FastAPI wrapper exposes the agent as a `POST /investigate` endpoint. 
 
 
 ## Evaluation
