@@ -96,19 +96,19 @@ conda create -n anomaly-agent python=3.12
 conda activate anomaly-agent
 pip install -r requirements.txt
 
-# Add your Anthropic API key to a .env file:
+### Add your Anthropic API key to a .env file:
 echo "ANTHROPIC_API_KEY=your-key-here" > .env
 
-# Generate the synthetic scenarios
+### Generate the synthetic scenarios
 python synthetic_generator.py
 
-# Run the agent on a single scenario
+### Run the agent on a single scenario
 python agent_loop.py
 
-# Run the full evaluation
+### Run the full evaluation
 python eval.py
 
-# Or start the API
+### Or start the API
 uvicorn isthisweirdapp:app --reload
 \`\`\`
 
