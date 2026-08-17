@@ -1,0 +1,12 @@
+{
+    "scenario_id": "scenario_01",
+    "ground_truth": {
+        "incident_type": "traffic_collapse",
+        "start_date": "2026-02-15",
+        "affected_channel": "referral",
+        "magnitude": 0.7,
+        "description": "Referral partner pulled their integration, referral traffic collapsed ~70 percent"
+    },
+    "n_days": 90,
+    "start_date": "2026-01-01"
+}

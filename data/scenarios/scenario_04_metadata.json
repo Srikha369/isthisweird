@@ -1,0 +1,12 @@
+{
+    "scenario_id": "scenario_04",
+    "ground_truth": {
+        "incident_type": "pricing_change",
+        "start_date": "2026-02-05",
+        "affected_channel": null,
+        "magnitude": 0.25,
+        "description": "Price increase gradually softened conversion ~25 percent across all channels over 2 weeks"
+    },
+    "n_days": 90,
+    "start_date": "2026-01-01"
+}

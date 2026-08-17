@@ -1,0 +1,12 @@
+{
+    "scenario_id": "scenario_06",
+    "ground_truth": {
+        "incident_type": "traffic_collapse",
+        "start_date": "2026-02-12",
+        "affected_channel": "organic",
+        "magnitude": 0.4,
+        "description": "Search algorithm update hit organic traffic, down ~40 percent"
+    },
+    "n_days": 90,
+    "start_date": "2026-01-01"
+}

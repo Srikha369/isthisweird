@@ -1,0 +1,12 @@
+{
+    "scenario_id": "scenario_03",
+    "ground_truth": {
+        "incident_type": "sitewide_bug",
+        "start_date": "2026-02-20",
+        "affected_channel": null,
+        "magnitude": 0.35,
+        "description": "Global signup flow outage cut conversion ~35 percent across every channel"
+    },
+    "n_days": 90,
+    "start_date": "2026-01-01"
+}

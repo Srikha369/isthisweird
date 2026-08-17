@@ -1,0 +1,12 @@
+{
+    "scenario_id": "scenario_10",
+    "ground_truth": {
+        "incident_type": "spend_cut",
+        "start_date": "2026-02-14",
+        "affected_channel": "paid",
+        "magnitude": 0.5,
+        "description": "Q1 budget freeze cut paid spend, paid traffic down ~50 percent"
+    },
+    "n_days": 90,
+    "start_date": "2026-01-01"
+}

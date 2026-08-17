@@ -1,0 +1,12 @@
+{
+    "scenario_id": "scenario_02",
+    "ground_truth": {
+        "incident_type": "conversion_bug",
+        "start_date": "2026-02-10",
+        "affected_channel": "paid",
+        "magnitude": 0.6,
+        "description": "Broken signup form on the paid landing page tanked paid conversion ~60 percent"
+    },
+    "n_days": 90,
+    "start_date": "2026-01-01"
+}

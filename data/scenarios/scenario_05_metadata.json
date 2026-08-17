@@ -1,0 +1,12 @@
+{
+    "scenario_id": "scenario_05",
+    "ground_truth": {
+        "incident_type": "spend_cut",
+        "start_date": "2026-02-18",
+        "affected_channel": "paid",
+        "magnitude": 0.8,
+        "description": "Marketing cut paid ad spend, paid traffic dropped ~80 percent"
+    },
+    "n_days": 90,
+    "start_date": "2026-01-01"
+}

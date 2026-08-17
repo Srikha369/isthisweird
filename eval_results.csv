@@ -1,0 +1,447 @@
+scenario_id,true_incident_type,true_channel,num_tool_calls,tools_used,diagnosis,type_correct,channel_correct,fully_correct
+scenario_01,traffic_collapse,referral,8,"['segment_comparison_tool', 'segment_comparison_tool', 'detect_changepoints', 'segment_comparison_tool', 'detect_changepoints', 'check_event_alignment', 'detect_changepoints', 'check_event_alignment']","I now have all the evidence needed for a definitive diagnosis. Here is my full findings report:
+
+---
+
+## 🔍 Root Cause Diagnosis: February Signup Drop
+
+### 📌 Most Likely Root Cause
+**A severe, unexplained collapse in referral channel traffic starting February 14, 2026.**
+
+---
+
+### 🧩 Evidence Summary
+
+| Finding | Detail |
+|---|---|
+| **Changepoint detected** | February 14, 2026 — statistically significant (p = 0.0042, t = 2.94) |
+| **Channel isolation** | Only **referral** signups dropped significantly (**-71%**, before mean: 76/day → after mean: 22/day, p ≈ 0.0) |
+| **Organic & Paid unaffected** | Organic: -2.5% (p = 0.69, not significant). Paid: +1.6% (p = 0.79, not significant) |
+| **Conversion rate stable** | No significant conversion rate drop in referral (p = 0.50), ruling out a funnel/UX issue |
+| **Referral changepoint confirmed** | The referral-scoped changepoint detector returned the same date: Feb 14 (t = **16.8**, p ≈ 0.0) — an extraordinarily strong signal |
+| **No known referral event** | Event alignment found **no business event** logged for referral on or near Feb 14 |
+| **Unrelated paid event noted** | A Q1 budget freeze cut paid spend ~50% on Feb 14, but paid signups were *unaffected* — suggesting the budget cut did not translate into a paid signup drop (possibly offset by efficiency gains) |
+
+---
+
+### 🩺 Diagnosis
+
+This is a **traffic-volume problem isolated to the referral channel**, not a conversion/funnel issue. The drop is:
+- **Abrupt** (single changepoint, not a gradual decline)
+- **Severe** (-71% in daily referral signups)
+- **Statistically certain** (t-stat of 16.8 is exceptionally high)
+- **Unexplained** by any logged internal business event
+
+**Confidence Level: 🟡 Medium-High**
+- High confidence that referral traffic is the cause and Feb 14 is the start date.
+- Medium confidence on the *root cause of the referral drop itself* — because no known event explains it. This warrants further manual investigation.
+
+---
+
+### ⚠️ Recommended Next Steps
+
+1. **Inspect referral partners/sources** — Did a major referring partner (affiliate, integration, partner site) go offline, change their link, or stop sending traffic around Feb 14?
+2. **Check for referral program changes** — Was the referral incentive structure, link validity, or referral tracking code modified around this date?
+3. **Audit UTM/attribution data** — Could referral traffic have been mis-attributed to another channel post-Feb 14, making it *appear* as a drop?
+4. **Investigate the paid budget freeze separately** — While paid signups held steady, monitor whether the -50% spend cut causes delayed downstream effects.",True,True,True
+scenario_02,conversion_bug,paid,8,"['segment_comparison_tool', 'detect_changepoints', 'detect_changepoints', 'segment_comparison_tool', 'detect_changepoints', 'detect_changepoints', 'detect_changepoints', 'check_event_alignment']","The evidence is conclusive. Here is the full diagnosis:
+
+---
+
+## 🔍 Root Cause Diagnosis
+
+### Most Likely Root Cause: Payment Processor Migration (Deployed Feb 8, 2026) Breaking the Paid Signup Funnel
+
+---
+
+### 📋 Summary of Evidence
+
+| Finding | Detail |
+|---|---|
+| **Affected channel** | **Paid only** — Organic (+1.8%) and Referral (+8.1%) are completely unaffected |
+| **Signup drop** | Paid signups fell **−60.4%** (from 135.4/day → 53.7/day) |
+| **Conversion rate drop** | Paid conversion rate fell **−60.5%** — almost identical magnitude |
+| **Changepoint date** | Statistically detected at **Feb 10, 2026** (t=12.29, p≈0) |
+| **Known business event** | A **Payment Processor Migration** was deployed on **Feb 8, 2026** — just 2 days before the detected changepoint |
+
+---
+
+### 🧠 Interpretation
+
+The near-identical drop in both **signups and conversion rate** (both ~60%) in the paid channel, while traffic (signups attempted) may have stayed stable, points strongly to a **funnel breakage** — not a traffic problem. Specifically:
+
+- The payment processor migration on **Feb 8** likely introduced a bug or incompatibility in the paid signup or checkout flow.
+- Users arriving via paid ads were encountering a broken payment step, causing them to abandon the funnel at high rates.
+- Organic and referral users were unaffected because they likely follow a different onboarding path or aren't subject to the same payment step.
+
+---
+
+### ✅ Confidence Level: **HIGH**
+
+Three independent lines of evidence converge on the same conclusion:
+1. **Channel isolation** — the anomaly is 100% concentrated in paid.
+2. **Dual metric drop** — both signups and conversion rate fell equally, hallmark of a funnel break.
+3. **Event alignment** — a payment system deployment occurred just 2 days before the changepoint.
+
+---
+
+### 🔧 Recommended Actions
+1. **Immediately audit** the paid signup/checkout flow for regressions introduced by the Feb 8 payment processor migration.
+2. **Roll back or hotfix** the payment integration if the bug is confirmed.
+3. **Compare** conversion funnels between paid vs. organic/referral users to pinpoint the exact step where drop-off occurs.
+4. **Monitor** paid signups and conversion rate daily after the fix to confirm recovery.",True,True,True
+scenario_03,sitewide_bug,,4,"['segment_comparison_tool', 'detect_changepoints', 'segment_comparison_tool', 'check_event_alignment']","I now have a comprehensive and clear picture. Let me compile the final diagnosis.
+
+---
+
+## 🔍 Final Diagnosis
+
+### Root Cause: **Signup Flow Refactor Deployed on 2026-02-20 (Primary) + Paid Ad Spend Cut on 2026-02-18 (Contributing)**
+
+---
+
+### 📊 Evidence Summary
+
+| Finding | Detail |
+|---|---|
+| **Changepoint detected** | 2026-02-20, highly significant (t-stat = 7.86, p ≈ 0) |
+| **Channels affected** | ALL three: Paid (−36.8%), Organic (−34.8%), Referral (−32.2%) |
+| **Conversion rate affected** | ALL three channels dropped ~33–36% |
+| **Traffic vs. Funnel** | **Funnel issue** — both signups AND conversion rates dropped across every channel |
+| **Known event #1** | Signup flow refactor deployed on **Feb 20** (exact match) |
+| **Known event #2** | Paid ad spend cut ~80% on **Feb 18** (2 days prior) |
+
+---
+
+### 🧠 Interpretation
+
+There are **two overlapping events**, but they explain different parts of the anomaly:
+
+1. **Signup flow refactor (Feb 20) → Primary cause of the funnel degradation.** The conversion rate drop is ~33–36% *across all channels simultaneously* — organic and referral have no dependency on ad spend, yet they dropped just as much as paid. This cross-channel uniformity is the hallmark of a **sitewide product/funnel issue**, not a marketing problem. The refactor almost certainly introduced a bug or UX regression in the signup flow.
+
+2. **Paid ad spend cut −80% (Feb 18) → Contributing cause of the volume drop in paid channel.** This would reduce raw paid signups independently, but it cannot explain the organic and referral drops, nor the conversion rate collapse across the board.
+
+---
+
+### ✅ Confidence Level: **High**
+
+The evidence strongly converges:
+- The changepoint date exactly aligns with the deploy.
+- The cross-channel nature of both the signup drop and conversion rate drop rules out a channel-specific traffic explanation.
+- The tool explicitly interprets this as a *""sitewide funnel/product issue.""*
+
+---
+
+### 🔧 Recommended Actions
+
+1. **Immediate:** Audit the Feb 20 signup flow refactor for regressions — check error rates, form submission failures, redirect issues, or broken steps in the funnel.
+2. **Short-term:** Consider rolling back or hotfixing the refactor while investigating.
+3. **Separate investigation:** Evaluate whether the paid ad spend cut of −80% was intentional and whether it should be restored once the funnel is fixed.",True,True,True
+scenario_04,pricing_change,,6,"['segment_comparison_tool', 'detect_changepoints', 'segment_comparison_tool', 'detect_changepoints', 'check_event_alignment', 'check_event_alignment']","The only known event is the paid spend cut on Feb 14 — nothing explains the broader Feb 12 conversion rate drop. But the segment comparison showed conversion dropping across **all** channels simultaneously, which a paid spend cut alone can't explain. I have enough evidence now for a clear diagnosis.
+
+---
+
+## 🔍 Final Diagnosis
+
+### Root Cause: **Dual-factor collapse — a sitewide funnel/product issue starting ~Feb 12, compounded by a paid budget freeze on Feb 14**
+
+---
+
+### What the Evidence Shows
+
+| Signal | Finding |
+|---|---|
+| **Changepoint — Signups** | Statistically significant break on **Feb 14** (t=4.95, p≈0) |
+| **Changepoint — Conversion Rate** | Even stronger break on **Feb 12** (t=22.6, p≈0) — *2 days earlier* |
+| **Channel breakdown (signups)** | All three channels dropped: Referral −25.4%, Paid −24.6%, Organic −20.9% |
+| **Channel breakdown (conversion)** | All three channels dropped: Paid −24.4%, Referral −23.9%, Organic −22.7% |
+| **Known business event** | Q1 budget freeze — paid spend cut ~50% on **Feb 14** |
+| **Event alignment for Feb 12** | No known event found |
+
+---
+
+### Interpretation
+
+There are **two overlapping problems**:
+
+1. **🚨 Primary (Unknown) Issue — Sitewide conversion funnel degradation starting ~Feb 12**
+   The conversion rate dropped sharply and uniformly across *all* channels (organic, paid, referral) starting Feb 12 — two days *before* any known business action. This pattern — same-magnitude drops across unrelated acquisition channels — is the hallmark of a **sitewide product or funnel issue** (e.g., a broken signup flow, a bad code deploy, a UX regression, or a pricing/offer change). This is the *dominant* driver since it affects conversion, not just traffic.
+
+2. **⚠️ Secondary (Known) Issue — Paid spend cut on Feb 14**
+   The Q1 budget freeze cut paid spend by ~50%, which reduces paid traffic and explains some of the *signups* drop in the paid channel. However, this alone cannot explain why organic and referral conversion rates also fell — those channels have independent traffic sources.
+
+---
+
+### Recommended Next Steps
+
+- **Immediately investigate deploys/releases around Feb 11–12** — a code change is the most likely culprit for a simultaneous cross-channel conversion drop.
+- Check for **UX or checkout funnel regressions** (e.g., broken signup form, failed A/B test rollout, SSL/auth errors).
+- Separately, evaluate whether the **paid budget freeze** was intentional and budget the expected signup loss from it accordingly.
+
+### Confidence Level: **High (for the dual-factor diagnosis)** / **Medium (for the specific Feb 12 root cause)** — the conversion rate signal is statistically very strong (t=22.6), but the exact cause of the Feb 12 break is unconfirmed since no known event was found in the system.",True,True,True
+scenario_05,spend_cut,paid,5,"['segment_comparison_tool', 'detect_changepoints', 'segment_comparison_tool', 'detect_changepoints', 'check_event_alignment']","The evidence is conclusive. Here is the full diagnosis:
+
+---
+
+## 🔍 Root Cause Diagnosis
+
+### Most Likely Root Cause: **~80% Cut in Paid Ad Spend on 2026-02-18**
+
+**Confidence Level: 🟢 High**
+
+---
+
+### Evidence Summary
+
+| Finding | Detail |
+|---|---|
+| **Changepoint date** | 2026-02-20 — a highly significant break (t-stat: 6.11, p ≈ 0.00) |
+| **Channel isolation** | Only **paid** signups dropped (-79.8%, p ≈ 0.00); organic (+3.2%) and referral (-0.9%) were flat and not significant |
+| **Traffic, not funnel** | Paid conversion rate was completely stable (-0.3%, p = 0.85) — the funnel itself is working fine |
+| **Business event match** | Marketing cut paid ad spend by ~80% on **2026-02-18** — just 2 days before the changepoint, a perfectly natural lag for traffic to respond |
+
+---
+
+### What Happened
+
+Marketing significantly reduced paid advertising budget (~80% cut) on February 18th. This directly starved the paid channel of traffic. Since organic and referral channels were unaffected and conversion rates remained stable across all channels, this is purely a **volume problem** — fewer paid visitors arrived, resulting in far fewer paid signups. The signup funnel itself is healthy.
+
+---
+
+### What About the Signup Flow Refactor (2026-02-20)?
+
+A code deploy also landed on the exact changepoint date. However, this is **unlikely to be a contributing cause** because:
+1. Conversion rates did **not** drop — a broken signup flow would suppress conversions.
+2. Organic and referral signups were **unaffected** — a deploy issue would hurt all channels.
+
+The deploy appears to be a coincidence, but it's worth a quick smoke test to be fully ruled out.
+
+---
+
+### Recommended Actions
+1. **✅ Primary fix:** Confirm with Marketing whether the ad spend cut was intentional (budget reallocation, campaign pause, etc.) and restore spend if the drop in signups was unintended.
+2. **🔎 Secondary check:** Run a sanity test on the signup flow refactor to confirm it hasn't introduced subtle issues (even though conversion data looks clean).",True,True,True
+scenario_06,traffic_collapse,organic,7,"['segment_comparison_tool', 'detect_changepoints', 'segment_comparison_tool', 'check_event_alignment', 'segment_comparison_tool', 'detect_changepoints', 'check_event_alignment']","I now have all the evidence needed to deliver a definitive diagnosis. Here is my full findings report:
+
+---
+
+## 🔍 Anomaly Investigation Report: Signup Drop in February
+
+### ✅ Final Diagnosis
+
+**Root Cause: A significant, unexplained drop in organic traffic volume beginning ~February 12, 2026.**
+
+---
+
+### 📊 Evidence Summary
+
+| Finding | Detail |
+|---|---|
+| **Changepoint detected** | February 12, 2026 (t-stat: 3.748, p < 0.001 — highly significant) |
+| **Channel isolated** | **Organic only** |
+| **Organic signups drop** | –41.6% (before mean: 167.2/day → after mean: 97.7/day, p ≈ 0.0) |
+| **Paid signups** | +2.4% — no significant change |
+| **Referral signups** | –3.9% — no significant change |
+| **Conversion rate** | No significant change in any channel |
+| **Known business event** | ❌ None found near Feb 12 |
+
+---
+
+### 🧠 Interpretation
+
+1. **It's a traffic problem, not a funnel problem.** Conversion rates are stable across all channels. Visitors who do arrive are converting at the same rate as before — meaning the signup flow, landing pages, and onboarding are working fine.
+
+2. **It's isolated to organic.** Paid and referral channels are completely unaffected, which rules out a broad business-level issue (e.g., pricing change, site outage, or general demand decline).
+
+3. **The most likely culprits for an organic traffic drop are:**
+   - 🔎 **A Google/search algorithm update** around Feb 12 that penalized or downranked key landing pages
+   - 📉 **SEO regression** — e.g., a site deploy that introduced crawl errors, broken canonical tags, or accidental `noindex` directives
+   - 📋 **Content deindexing** — important high-traffic pages may have been removed or de-indexed
+
+4. **No known internal event explains it.** The event log returned empty, making an internal/intentional cause less likely — though it's worth double-checking with the engineering and marketing teams for unlogged deploys or SEO changes around that date.
+
+---
+
+### 🎯 Confidence Level: **High**
+
+The statistical signal is extremely strong (p < 0.001 for the changepoint; p ≈ 0.0 for the segment comparison), the isolation to organic is unambiguous, and the stable conversion rate clearly rules out funnel issues. The only uncertainty is the *specific* sub-cause within organic traffic loss (algorithm update vs. technical SEO regression), which requires manual inspection of Google Search Console data.
+
+---
+
+### 🔧 Recommended Next Steps
+
+1. **Check Google Search Console** for impressions/clicks around Feb 12 — look for drops in specific queries or page types.
+2. **Audit for technical SEO issues** deployed around that date (robots.txt, sitemaps, `noindex` tags, Core Web Vitals regressions).
+3. **Cross-reference with Google algorithm update trackers** (e.g., MozCast, SEMrush Sensor) for activity on or around Feb 12, 2026.
+4. **Ask the engineering team** if any unlogged deploys or infrastructure changes occurred around that date.",True,True,True
+scenario_07,conversion_bug,organic,12,"['segment_comparison_tool', 'segment_comparison_tool', 'detect_changepoints', 'detect_changepoints', 'detect_changepoints', 'detect_changepoints', 'detect_changepoints', 'detect_changepoints', 'detect_changepoints', 'detect_changepoints', 'check_event_alignment', 'check_event_alignment']","The evidence is now conclusive. I have everything needed for a final diagnosis.
+
+---
+
+## 🔍 Root Cause Diagnosis
+
+### Most Likely Root Cause: **Broken or Degraded Signup Flow — Caused by the February 20 Deployment**
+**Confidence: HIGH**
+
+---
+
+### What the Evidence Shows
+
+| Signal | Finding |
+|---|---|
+| **Signup changepoint (organic)** | Feb 21 — t-stat **11.32**, p ≈ 0 ✅ Highly significant |
+| **Conversion rate changepoint (organic)** | Feb 22 — t-stat **37.76**, p ≈ 0 ✅ Extremely significant |
+| **Paid channel signups/conversion** | No significant changepoint ❌ Not affected |
+| **Referral channel signups/conversion** | No significant changepoint ❌ Not affected |
+| **Known business event** | `""Signup flow refactor deployed""` on **Feb 20** — 1 day before the signup drop, 2 days before the conversion rate drop ✅ Direct alignment |
+
+---
+
+### Narrative
+
+1. **It's a funnel problem, not a traffic problem.** The organic channel shows a dramatic drop in *conversion rate* (t-stat = 37.76) — the strongest signal in the entire investigation. This means users were still arriving, but failing to complete signup. Paid and referral channels are unaffected.
+
+2. **It's isolated to organic.** Paid and referral show no statistically significant changes in either signups or conversion rate around this period, ruling out a broad market or seasonal explanation.
+
+3. **The timing perfectly matches a known deploy.** A **""Signup flow refactor""** was deployed on **February 20** — just 1 day before the organic signup drop and 2 days before the organic conversion rate collapse. This is the textbook fingerprint of a bad deployment introducing a regression in the signup funnel.
+
+4. **Why only organic?** Organic users often land on different entry points (e.g., homepage, SEO landing pages) compared to paid or referral users who are sent to dedicated campaign landing pages. The refactored signup flow likely only affected organic entry paths, or organic users are more sensitive to UX friction.
+
+---
+
+### Recommended Actions
+
+- 🔴 **Immediate:** Review the Feb 20 signup flow refactor for regressions — check for broken form steps, JS errors, or redirect failures specifically on organic landing pages.
+- 🔍 **Investigate:** Pull session recordings and funnel drop-off data for organic users starting Feb 20.
+- ↩️ **Consider rollback** of the signup flow refactor while the bug is identified and fixed.
+- ✅ **Validate fix** using the segment comparison tool post-fix to confirm organic conversion rate recovers.",True,True,True
+scenario_08,sitewide_bug,,5,"['segment_comparison_tool', 'detect_changepoints', 'segment_comparison_tool', 'detect_changepoints', 'check_event_alignment']","That's a perfect match. I now have sufficient evidence for a definitive diagnosis. Here is the full breakdown:
+
+---
+
+## 🔍 Investigation Summary
+
+### Root Cause: **Payment Processor Migration (Deployed 2026-02-08)**
+
+---
+
+### Evidence Chain
+
+| Step | Finding |
+|---|---|
+| **Changepoint Detection (Signups)** | A statistically significant break detected on **2026-02-07** (t=11.4, p≈0.0) |
+| **Changepoint Detection (Conversion Rate)** | An even stronger break detected on **2026-02-08** (t=64.9, p≈0.0) — nearly simultaneous |
+| **Segment Comparison** | All three channels (organic, paid, referral) each dropped ~50% in both **signups** and **conversion rate** — perfectly uniform |
+| **Event Alignment** | A **payment processor migration** was deployed on **2026-02-08**, aligning within 1 day of both changepoints |
+
+---
+
+### Diagnosis
+
+- **Type of problem:** Funnel/product issue — *not* a traffic issue. Visits held steady; users are arriving but failing to complete signup.
+- **Scope:** Sitewide — all channels are equally affected (~50% drop), ruling out any channel-specific cause (e.g., ad budget cut, SEO penalty, referral partner issue).
+- **Most likely mechanism:** The payment processor migration introduced a bug, error, or UX friction in the signup/checkout flow, causing roughly half of would-be signups to fail or abandon.
+
+---
+
+### Confidence: 🟢 **High**
+
+The evidence is unambiguous:
+1. The timing is precise and consistent (signups and conversion both break on the same 1–2 day window).
+2. The uniform ~50% drop across all channels is the hallmark of a sitewide product change — not a demand-side issue.
+3. A known internal event (payment processor migration) lands exactly on the changepoint date.
+
+---
+
+### Recommended Next Steps
+1. **Immediately audit** the payment processor migration for errors in the signup flow (failed API calls, broken redirect URLs, UI rendering bugs).
+2. **Check error logs** from 2026-02-08 onward for new exception types in the payment/signup service.
+3. **Consider a rollback or hotfix** if the migration has introduced a regression.
+4. **Monitor conversion rate** closely after any fix — it should recover to the pre-Feb-7 baseline (~10% conversion rate).",True,True,True
+scenario_09,pricing_change,,5,"['segment_comparison_tool', 'detect_changepoints', 'detect_changepoints', 'segment_comparison_tool', 'check_event_alignment']","I now have a comprehensive picture. Let me deliver the final diagnosis.
+
+---
+
+## 🔍 Investigation Complete — Final Diagnosis
+
+### Root Cause: **Sitewide Funnel/Product Degradation starting ~March 7, 2026**
+
+---
+
+### 📊 Key Findings
+
+| Dimension | Finding |
+|---|---|
+| **When** | Changepoint detected on **March 7–8, 2026** (highly significant: p ≈ 0.0, t-stat up to 23.5) |
+| **Which channels affected** | **All three** — organic, paid, and referral |
+| **Signup drop (organic)** | −30.2% (164 → 115 avg/day) |
+| **Signup drop (paid)** | −29.8% (136 → 95 avg/day) |
+| **Signup drop (referral)** | −27.1% (71 → 52 avg/day) |
+| **Conversion rate drop** | −27% to −28% across **all channels** |
+| **Known business event** | ❌ None found |
+
+---
+
+### 🧠 Interpretation
+
+The evidence points to a **sitewide funnel or product issue**, not a traffic/marketing problem. Here's why:
+
+1. **All channels dropped uniformly (~28–30%)** — If this were a marketing issue (e.g., reduced ad spend or SEO demotion), we'd expect only one channel to be impacted. The near-identical drop across organic, paid, *and* referral rules that out.
+
+2. **Conversion rate dropped alongside signups** — Traffic alone didn't fall; the ability to *convert* visitors into signups also degraded. This is the hallmark of a **funnel problem** (e.g., a broken signup form, a bad deploy, a UX regression, or a pricing change).
+
+3. **No known business event is registered** — This makes it an **unexplained anomaly**, meaning it could be an unlogged deploy, an infrastructure issue, a third-party integration failure (e.g., email verification, OAuth), or a subtle UI bug that wasn't tracked as a formal event.
+
+---
+
+### ✅ Recommended Next Steps
+
+- **Check deployment logs around March 7, 2026** for any unregistered backend/frontend changes.
+- **Audit the signup funnel** (form rendering, validation, email confirmation flows) for regressions introduced around that date.
+- **Review infrastructure/error logs** (5xx rates, latency spikes) for signs of a service degradation.
+- **Verify third-party integrations** (Stripe, SendGrid, Auth providers) for outages or breaking API changes.
+
+---
+
+### 📈 Confidence Level: **High**
+
+The changepoint is statistically very strong (p ≈ 0.0), the cross-channel uniformity is unambiguous, and the simultaneous drop in both traffic *and* conversion rate makes a funnel/product cause the overwhelmingly likely explanation. The only uncertainty is the *specific* product/technical cause, which requires log-level investigation.",True,True,True
+scenario_10,spend_cut,paid,5,"['segment_comparison_tool', 'detect_changepoints', 'segment_comparison_tool', 'detect_changepoints', 'check_event_alignment']","The evidence is clear and consistent across all three tools. I have everything I need for a confident diagnosis.
+
+---
+
+## 🔍 Root Cause Diagnosis
+
+### Most Likely Root Cause: **Q1 Budget Freeze — Paid Channel Spend Cut ~50%**
+
+**Confidence Level: 🟢 HIGH**
+
+---
+
+### Evidence Summary
+
+| Tool | Finding |
+|---|---|
+| **Changepoint Detection (signups)** | A statistically significant break in signups was detected on **2026-02-14** (t-stat: 3.86, p = 0.0002) |
+| **Segment Comparison** | Paid channel signups dropped **-50.3%** (131.5/day → 65.4/day) — statistically significant (p ≈ 0.0). Organic (+2.2%) and referral (-6.0%) showed **no significant change** |
+| **Conversion Rate** | No significant drop in conversion rate across any channel — this rules out a funnel/UX problem |
+| **Event Alignment** | 2026-02-14 aligns **exactly** with a logged business event: *""Q1 budget freeze — paid spend cut ~50%""* |
+
+---
+
+### Interpretation
+
+This is a **traffic-volume problem, not a funnel problem**:
+
+- ✅ **Where:** Isolated entirely to the **paid channel** — organic and referral are healthy and stable.
+- ✅ **When:** Began precisely on **February 14, 2026**.
+- ✅ **Why:** A deliberate **~50% cut in paid marketing spend** due to a Q1 budget freeze directly halved paid-driven traffic and signups.
+- ✅ **Not a conversion issue:** Conversion rates are flat across all channels, meaning the product/funnel itself is working fine.
+
+---
+
+### Recommended Actions
+
+1. **If the signup drop is unacceptable:** Revisit the Q1 budget freeze decision and evaluate the cost-per-signup trade-off for the paid channel.
+2. **If the budget freeze is intentional:** Update stakeholder expectations — this is a planned, explainable drop, not an organic problem.
+3. **Monitor organic and referral:** Consider whether growth in these channels can offset the paid reduction long-term.",True,True,True

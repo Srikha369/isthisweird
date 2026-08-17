@@ -1,0 +1,12 @@
+{
+    "scenario_id": "scenario_09",
+    "ground_truth": {
+        "incident_type": "pricing_change",
+        "start_date": "2026-02-25",
+        "affected_channel": null,
+        "magnitude": 0.3,
+        "description": "New pricing tier confused users, conversion softened ~30 percent over 2 weeks"
+    },
+    "n_days": 90,
+    "start_date": "2026-01-01"
+}

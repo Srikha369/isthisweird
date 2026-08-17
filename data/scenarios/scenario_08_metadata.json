@@ -1,0 +1,12 @@
+{
+    "scenario_id": "scenario_08",
+    "ground_truth": {
+        "incident_type": "sitewide_bug",
+        "start_date": "2026-02-08",
+        "affected_channel": null,
+        "magnitude": 0.5,
+        "description": "Payment processor outage cut conversion ~50 percent sitewide"
+    },
+    "n_days": 90,
+    "start_date": "2026-01-01"
+}
